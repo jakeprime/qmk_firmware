@@ -17,9 +17,9 @@
 
 enum layers {
     _QWERTY = 0,
-    _LOWER,
-    _RAISE,
-    _ADJUST
+    _SYMB,
+    _NUMS,
+    _RGB
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -33,14 +33,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  |LShift|LShift|  |LShift|LShift|   N  |   M  | ,  < | . >  | /  ? | RShift |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        | Ctl  | Alt  |_RAISE| Cmd  |      |  | Enter|_LOWER| Space| Bksp |   `  |
+ *                        | Ctl  | Alt  |_SYMB | Cmd  |      |  | Enter|_NUMS | Space| Bksp |   `  |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_QWERTY] = LAYOUT(
-                      KC_TAB, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                              KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_ENT,
-        MT(MOD_LCTL, KC_ESC), KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                              KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_RSFT,
-                     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_LSFT, KC_LSFT, KC_LSFT, KC_LSFT,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-                                                KC_LCTL, KC_LALT, MO(_RAISE), KC_LGUI, _______, KC_ENT,  MO(_LOWER), KC_SPC,  KC_BSPC, KC_GRV
+                      KC_TAB, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                            KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_ENT,
+        MT(MOD_LCTL, KC_ESC), KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                            KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_RSFT,
+                     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,      KC_LSFT, KC_LSFT, KC_LSFT, KC_LSFT,   KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+                                                KC_LCTL, KC_LALT, MO(_SYMB), KC_LGUI, _______, KC_ENT,  MO(_NUMS), KC_SPC,  KC_BSPC, KC_GRV
     ),
 /*
  * Lower Layer: Symbols
@@ -52,14 +52,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |  %   |  *   |  [   |  ]   |  £   |      |      |  |      |      |   !  |  =   |  <   |  >   |  ?   |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        |      |      |      |      |      |  |      | _RGB |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
-    [_LOWER] = LAYOUT(
-      _______, KC_PLUS, KC_EXLM, KC_LCBR, KC_RCBR, A(KC_3),                                     KC_BSLS, KC_QUOT, KC_DQUO, KS_GRV,  KC_AT,   _______,
-      _______, KC_AMPR, KC_PIPE, KC_LPRN, KC_RPRN, KC_DLR,                                      KC_TILD, KC_UNDS, KC_MINS, KC_SLSH, KC_COLN, _______,
-      _______, KC_PERC, KC_ASTR, KC_LBRC, KC_RBRC, S(KC_3),                                     KC_EXLM, KC_EQL,  KC_LT,   KC_RT,   KC_QUES, _______,
-                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    [_SYMB] = LAYOUT(
+      _______, KC_PLUS, KC_EXLM, KC_LCBR, KC_RCBR, A(KC_3),                                      KC_BSLS, KC_QUOT, KC_DQUO, KC_GRV,  KC_AT,   _______,
+      _______, KC_AMPR, KC_PIPE, KC_LPRN, KC_RPRN, KC_DLR,                                       KC_TILD, KC_UNDS, KC_MINS, KC_SLSH, KC_COLN, _______,
+      _______, KC_PERC, KC_ASTR, KC_LBRC, KC_RBRC, S(KC_3), _______, _______, _______,  _______, KC_EXLM, KC_EQL,  KC_LT,   KC_GT,   KC_QUES, _______,
+                                 _______, _______, _______, _______, _______, MO(_RGB), _______, _______, _______, _______
     ),
 /*
  * Raise Layer: Number keys, media, navigation
@@ -71,15 +71,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |      |      |      | Mute | VolDn|      |      |  |      |      | MLeft| Mdown| MUp  |MRight|      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |      |      |      |  |      |      |      |      |      |
- *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        |      |      | _RGB |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
-    [_RAISE] = LAYOUT(
-      _______, KC_1, 	  KC_2,    KC_3,    KC_4,    KC_5,                                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-      _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU,                                     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
-      _______, _______, _______, _______, KC_MUTE, KC_VOLD, _______, _______, _______, _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______,
-                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    [_NUMS] = LAYOUT(
+      _______, KC_1,    KC_2,    KC_3,    KC_4,     KC_5,                                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
+      _______, _______, KC_MPRV, KC_MPLY, KC_MNXT,  KC_VOLU,                                     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
+      _______, _______, _______, _______, KC_MUTE,  KC_VOLD, _______, _______, _______, _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______,
+                                 _______, _______, MO(_RGB), _______, _______, _______, _______, _______, _______, _______
     ),
 /*
  * Adjust Layer: Function keys, RGB
@@ -95,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
-    [_ADJUST] = LAYOUT(
+    [_RGB] = LAYOUT(
       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                       KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
       _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     _______, _______, _______, KC_F11,  KC_F12,  _______,
       _______, _______, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,_______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
@@ -124,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    return update_tri_layer_state(state, _SYMB, _NUMS, _RGB);
 }
 
 #ifdef OLED_DRIVER_ENABLE
@@ -166,14 +165,14 @@ static void render_status(void) {
         case _QWERTY:
             oled_write_P(PSTR("Default\n"), false);
             break;
-        case _LOWER:
-            oled_write_P(PSTR("Lower\n"), false);
+        case _SYMB:
+            oled_write_P(PSTR("Symbols\n"), false);
             break;
-        case _RAISE:
-            oled_write_P(PSTR("Raise\n"), false);
+        case _NUMS:
+            oled_write_P(PSTR("Nums/navigation\n"), false);
             break;
-        case _ADJUST:
-            oled_write_P(PSTR("Adjust\n"), false);
+        case _RGB:
+            oled_write_P(PSTR("RGB\n"), false);
             break;
         default:
             oled_write_P(PSTR("Undefined\n"), false);
