@@ -31,16 +31,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |  Esc   |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |Sft/Caps|   Z  |   X  |   C  |   V  |   B  |LShift|SftCmd|  |LShift|LShift|   N  |   M  | ,  < | . >  | /  ? |Sft/Caps|
+ * |Sft/Caps|   Z  |   X  |   C  |   V  |   B  |CmdAlt|SftCmd|  |LShift|LShift|   N  |   M  | ,  < | . >  | /  ? |Sft/Caps|
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        | Ctl  | Alt  |_SYMB | Cmd  |CtlAlt|  | Enter| Space| Bksp |_NUMS |   `  |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_QWERTY] = LAYOUT(
-        KC_TAB,          KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                             KC_Y,    KC_U,      KC_I,    KC_O,    KC_P,    KC_ENT,
-        KC_ESC,          KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                             KC_H,    KC_J,      KC_K,    KC_L,    KC_SCLN, _______,
-        LSFT_T(KC_CAPS), KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,      KC_LSFT, S(KC_LCMD), KC_LSFT, KC_LSFT, KC_N,    KC_M,      KC_COMM, KC_DOT,  KC_SLSH, RSFT_T(KC_CAPS),
-                                           KC_LCTL, KC_LALT, MO(_SYMB), KC_LCMD, C(KC_LALT), KC_ENT,  KC_SPC,  KC_BSPC, MO(_NUMS), KC_GRV
+        KC_TAB,          KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                                KC_Y,    KC_U,      KC_I,    KC_O,    KC_P,    KC_ENT,
+        KC_ESC,          KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                                KC_H,    KC_J,      KC_K,    KC_L,    KC_SCLN, _______,
+        LSFT_T(KC_CAPS), KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,      A(KC_LCMD), S(KC_LCMD), KC_LSFT, KC_LSFT, KC_N,    KC_M,      KC_COMM, KC_DOT,  KC_SLSH, RSFT_T(KC_CAPS),
+                                           KC_LCTL, KC_LALT, MO(_SYMB), KC_LCMD,    C(KC_LALT), KC_ENT,  KC_SPC,  KC_BSPC, MO(_NUMS), KC_GRV
     ),
 /*
  * Lower Layer: Symbols
@@ -157,7 +157,7 @@ static void render_qmk_logo(void) {
 static void render_status(void) {
     // QMK Logo and version information
     render_qmk_logo();
-    oled_write_P(PSTR("Kyria rev1.0\njakeprime 0.4\n"), false);
+    oled_write_P(PSTR("Kyria rev1.0\njakeprime 0.5\n"), false);
 
     // Host Keyboard Layer Status
     oled_write_P(PSTR("Layer: "), false);
