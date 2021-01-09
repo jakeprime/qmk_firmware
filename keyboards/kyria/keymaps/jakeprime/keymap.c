@@ -56,10 +56,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_SYMB] = LAYOUT(
-      _______, KC_PLUS, KC_EXLM, KC_LCBR, KC_RCBR, A(KC_3),                                     KC_BSLS, KC_QUOT, KC_DQUO, KC_GRV,  KC_AT,   _______,
-      _______, KC_AMPR, KC_PIPE, KC_LPRN, KC_RPRN, KC_DLR,                                      KC_TILD, KC_UNDS, KC_MINS, KC_SLSH, KC_COLN, _______,
-      _______, KC_PERC, KC_ASTR, KC_LBRC, KC_RBRC, S(KC_3), _______, _______, _______, _______, KC_EXLM, KC_EQL,  KC_LT,   KC_GT,   KC_QUES, _______,
-                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+      XXXXXXX, KC_PLUS, KC_EXLM, KC_LCBR, KC_RCBR, A(KC_3),                                     KC_BSLS, KC_QUOT, KC_DQUO, KC_GRV,  KC_AT,   XXXXXXX,
+      XXXXXXX, KC_AMPR, KC_PIPE, KC_LPRN, KC_RPRN, KC_DLR,                                      KC_TILD, KC_UNDS, KC_MINS, KC_SLSH, KC_COLN, XXXXXXX,
+      XXXXXXX, KC_PERC, KC_ASTR, KC_LBRC, KC_RBRC, S(KC_3), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_EXLM, KC_EQL,  KC_LT,   KC_GT,   KC_QUES, XXXXXXX,
+                                 XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX
     ),
 /*
  * Raise Layer: Number keys, media, navigation
@@ -75,10 +75,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_NUMS] = LAYOUT(
-      _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-      _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU,                                     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
-      _______, _______, _______, _______, KC_MUTE, KC_VOLD, _______, _______, _______, _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______,
-                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+      XXXXXXX, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    XXXXXXX,
+      XXXXXXX, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU,                                     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MUTE, KC_VOLD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX, XXXXXXX,
+                                 XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX
     ),
 /*
  * Adjust Layer: Function keys, RGB
@@ -95,10 +95,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_RGB] = LAYOUT(
-      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                       KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
-      _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     _______, _______, _______, KC_F11,  KC_F12,  _______,
-      _______, _______, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,_______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+      XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                       KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  XXXXXXX,
+      XXXXXXX, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     XXXXXXX, XXXXXXX, XXXXXXX, KC_F11,  KC_F12,  XXXXXXX,
+      XXXXXXX, XXXXXXX, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+                                 XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX
     ),
 // /*
 //  * Layer template
