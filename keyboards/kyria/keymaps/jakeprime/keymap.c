@@ -27,19 +27,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Base Layer: QWERTY
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |   Tab  |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  | Enter  |
+ * |   Tab  |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  | Delete |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |  Esc   |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : | Delete |
+ * | LShift |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : | RShift |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * | LShift |   Z  |   X  |   C  |   V  |   B  |CmdAlt|SftCmd|  |LShift| Caps |   N  |   M  | ,  < | . >  | /  ? | RShift |
+ * |  Esc   |   Z  |   X  |   C  |   V  |   B  |CmdAlt|SftCmd|  |      |      |   N  |   M  | ,  < | . >  | /  ? |  Caps  |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        | Ctl  | Alt  |_SYMB | Cmd  |CtlAlt|  | Enter|Shift |_N/Spc| Bksp |   `  |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_QWERTY] = LAYOUT(
-        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                                KC_Y,               KC_U,    KC_I,    KC_O,    KC_P,    KC_ENT,
-        KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                                KC_H,               KC_J,    KC_K,    KC_L,    KC_SCLN, KC_DEL,
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,      A(KC_LCMD), S(KC_LCMD), KC_LSFT, KC_CAPS, KC_N,               KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                                KC_Y,               KC_U,    KC_I,    KC_O,    KC_P,    KC_DEL,
+        KC_LSFT, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                                KC_H,               KC_J,    KC_K,    KC_L,    KC_SCLN, KC_RSFT,
+        KC_ESC,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,      A(KC_LCMD), S(KC_LCMD), XXXXXXX, XXXXXXX, KC_N,               KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_CAPS,
                                    KC_LCTL, KC_LALT, MO(_SYMB), KC_LCMD,    C(KC_LALT), KC_ENT,  KC_LSFT, LT(_NUMS, KC_SPC),  KC_BSPC, KC_GRV
     ),
 /*
@@ -67,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |        |   1  |  2   |  3   |  4   |  5   |                              |  6   |  7   |  8   |  9   |  0   |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |      |      | Play |      | VolUp|                              | Left | Down | Up   | Right|      |        |
+ * |   Esc  |      |      | Play |      | VolUp|                              | Left | Down | Up   | Right|      |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |      |      |      | Mute | VolDn|      |      |  |      |      | MLeft| Mdown| MUp  |MRight|      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
@@ -76,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_NUMS] = LAYOUT(
       XXXXXXX, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    XXXXXXX,
-      XXXXXXX, XXXXXXX, XXXXXXX, KC_MPLY, XXXXXXX, KC_VOLU,                                     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
+      KC_ESC,  XXXXXXX, XXXXXXX, KC_MPLY, XXXXXXX, KC_VOLU,                                     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MUTE, KC_VOLD, _______, _______, _______, _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX, XXXXXXX,
                                  _______, _______, _______, _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX
     ),
@@ -84,20 +84,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Adjust Layer: Function keys, RGB
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        | F1   |  F2  | F3   | F4   | F5   |                              | F6   | F7   |  F8  | F9   | F10  |        |
+ * |        |      |      |      |      |      |                              |      |   7  |   8  |   9  |  0   |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        | TOG  | SAI  | HUI  | VAI  | MOD  |                              |      |      |      | F11  | F12  |        |
+ * |        | TOG  | SAI  | HUI  | VAI  | MOD  |                              |      |   4  |   5  |   6  |      |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |      | SAD  | HUD  | VAD  | RMOD |      |      |  |      |      |      |      |      |      |      |        |
+ * |        |      | SAD  | HUD  | VAD  | RMOD |      |      |  |      |      |      |   1  |   2  |   3  |      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_RGB] = LAYOUT(
-      XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                       KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  XXXXXXX,
-      XXXXXXX, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     XXXXXXX, XXXXXXX, XXXXXXX, KC_F11,  KC_F12,  XXXXXXX,
-      XXXXXXX, XXXXXXX, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                     XXXXXXX, KC_KP_7, KC_KP_8, KC_KP_9, KC_KP_0, XXXXXXX,
+      XXXXXXX, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     XXXXXXX, KC_KP_4, KC_KP_5, KC_KP_6, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_1, KC_KP_2, KC_KP_3, XXXXXXX, XXXXXXX,
                                  XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
     ),
 // /*
