@@ -27,19 +27,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Base Layer: QWERTY
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |   Tab  |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  | Delete |
+ * |   Tab  |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * | LShift |   A  |   S  |D/Shft|   F  |   G  |                              |   H  |   J  |K/Shft|   L  | ;  : | RShift |
+ * |  Esc   |   A  |   S  |D/Shft|   F  |   G  |                              |   H  |   J  |K/Shft|   L  | ;  : | Delete |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |  Esc   |   Z  |   X  |   C  |   V  |   B  |CmdAlt|SftCmd|  |      |      |   N  |   M  | ,  < | . >  | /  ? |  Caps  |
+ * |        |   Z  |   X  |   C  |   V  |   B  |CmdAlt|SftCmd|  |      |      |   N  |   M  | ,  < | . >  | /  ? |  Caps  |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        | Ctl  | Alt  |_SYMB | Cmd  |CtlAlt|  | Enter|Shift |_N/Spc| Bksp |   `  |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_QWERTY] = LAYOUT(
-        KC_TAB,  KC_Q,    KC_W,    KC_E,               KC_R,    KC_T,                                                KC_Y,               KC_U,    KC_I,               KC_O,    KC_P,    KC_DEL,
-        KC_LSFT, KC_A,    KC_S,    MT(MOD_LSFT, KC_D), KC_F,    KC_G,                                                KC_H,               KC_J,    MT(MOD_RSFT, KC_K), KC_L,    KC_SCLN, KC_RSFT,
-        KC_ESC,  KC_Z,    KC_X,    KC_C,               KC_V,    KC_B,      A(KC_LCMD), S(KC_LCMD), XXXXXXX, XXXXXXX, KC_N,               KC_M,    KC_COMM,            KC_DOT,  KC_SLSH, KC_CAPS,
+        KC_TAB,  KC_Q,    KC_W,    KC_E,               KC_R,    KC_T,                                                KC_Y,               KC_U,    KC_I,               KC_O,    KC_P,    XXXXXXX,
+        KC_ESC,  KC_A,    KC_S,    MT(MOD_LSFT, KC_D), KC_F,    KC_G,                                                KC_H,               KC_J,    MT(MOD_RSFT, KC_K), KC_L,    KC_SCLN, KC_DEL,
+        XXXXXXX, KC_Z,    KC_X,    KC_C,               KC_V,    KC_B,      A(KC_LCMD), S(KC_LCMD), XXXXXXX, XXXXXXX, KC_N,               KC_M,    KC_COMM,            KC_DOT,  KC_SLSH, KC_CAPS,
                                    KC_LCTL,            KC_LALT, MO(_SYMB), KC_LCMD,    C(KC_LALT), KC_ENT,  KC_LSFT, LT(_NUMS, KC_SPC),  KC_BSPC, KC_GRV
     ),
 /*
