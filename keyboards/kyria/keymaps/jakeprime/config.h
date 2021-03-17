@@ -32,5 +32,8 @@
 #define SPLIT_USB_DETECT
 #define NO_USB_STARTUP_CHECK
 
+// https://docs.qmk.fm/#/tap_hold?id=permissive-hold
+#define PERMISSIVE_HOLD
+
 // https://docs.qmk.fm/#/tap_hold?id=ignore-mod-tap-interrupt
 #define IGNORE_MOD_TAP_INTERRUPT
