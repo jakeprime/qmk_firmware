@@ -23,6 +23,15 @@ enum layers {
     _NP
 };
 
+#define HOME_A SFT_T(KC_A)
+#define HOME_F LT(_NP, KC_F)
+#define TO_SYMB MO(_SYMB)
+#define ALT_CMD A(KC_LCMD)
+#define CMD_SFT S(KC_LCMD)
+#define ALT_CTL C(KC_LALT)
+#define SPC_NUM LT(_NUMS, KC_SPC)
+#define HOME_SC SFT_T(KC_SCLN)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * Base Layer: QWERTY
@@ -38,10 +47,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_QWERTY] = LAYOUT(
-        KC_TAB,  KC_Q,        KC_W,    KC_E,    KC_R,          KC_T,                                                KC_Y,               KC_U,    KC_I,    KC_O,    KC_P,           KC_ENT,
-        KC_ESC,  SFT_T(KC_A), KC_S,    KC_D,    LT(_NP, KC_F), KC_G,                                                KC_H,               KC_J,    KC_K,    KC_L,    SFT_T(KC_SCLN), KC_DEL,
-        KC_LSFT, KC_Z,        KC_X,    KC_C,    KC_V,          KC_B,      A(KC_LCMD), S(KC_LCMD), KC_LSFT, KC_CAPS, KC_N,               KC_M,    KC_COMM, KC_DOT,  KC_SLSH,        KC_RSFT,
-                                       KC_LCTL, KC_LALT,       MO(_SYMB), KC_LCMD,    C(KC_LALT), KC_ENT,  KC_LSFT, LT(_NUMS, KC_SPC),  KC_BSPC, KC_GRV
+        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_ENT,
+        KC_ESC,  HOME_A,  KC_S,    KC_D,    HOME_F,  KC_G,                                        KC_H,    KC_J,    KC_K,    KC_L,    HOME_SC, KC_DEL,
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    ALT_CMD, CMD_SFT, KC_LSFT, KC_CAPS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+                                   KC_LCTL, KC_LALT, TO_SYMB, KC_LCMD, ALT_CTL, KC_ENT,  KC_LSFT, SPC_NUM, KC_BSPC, KC_GRV
     ),
 /*
  * Lower Layer: Symbols
