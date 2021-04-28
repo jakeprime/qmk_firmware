@@ -76,6 +76,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        |      |      |      |      |      |  |      |      | _RGB |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
+/*
+To press a mod with a symbol the home mod must be held first, and then the symbol layer change, and then the symbol.
+To allow home row mods and layer change to pressed in any order it will need something like this:
+https://discord.com/channels/440868230475677696/473506116718952450/828578189957398588
+*/
     [_SYMB] = LAYOUT(
       XXXXXXX, KC_PLUS, S(KC_6), KC_LCBR, KC_RCBR, A(KC_3),                                     KC_BSLS, KC_QUOT, KC_DQUO, KC_GRV,  KC_AT,   XXXXXXX,
       XXXXXXX, KC_AMPR, KC_PIPE, KC_LPRN, KC_RPRN, KC_DLR,                                      KC_TILD, KC_UNDS, KC_MINS, KC_SLSH, KC_COLN, XXXXXXX,
