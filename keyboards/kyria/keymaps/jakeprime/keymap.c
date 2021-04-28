@@ -23,14 +23,6 @@ enum layers {
     _NUMS
 };
 
-#define HOME_A SFT_T(KC_A)
-#define HOME_F LT(_NUMS, KC_F)
-#define TO_SYMB MO(_SYMB)
-#define ALT_CMD A(KC_LCMD)
-#define CMD_SFT S(KC_LCMD)
-#define ALT_CTL C(KC_LALT)
-#define SPC_NUM LT(_NAV, KC_SPC)
-#define HOME_SC SFT_T(KC_SCLN)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
@@ -39,18 +31,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |   Tab  |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  | Enter  |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |  Esc   |A/Shft|   S  |   D  |F/NPad|   G  |                              |   H  |   J  |   K  |   L  |;/Shft| Delete |
+ * |  Esc   | A  ↑ | S  ^ | D ⎇ | F  ⌘ |   G  |                              |   H  | J  ⌘ | K  ⎇ | L  ^ | ;  ↑ | Delete |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * | LShift |   Z  |   X  |   C  |   V  |   B  |CmdAlt|SftCmd|  |LShift| Caps |   N  |   M  | ,  < | . >  | /  ? | RShift |
+ * | LShift |   Z  |   X  |   C  |V/Nums|   B  |CmdAlt|SftCmd|  |LShift| Caps |   N  |   M  | ,  < | . >  | /  ? | RShift |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        | Ctl  | Alt  |_SYMB | Cmd  |CtlAlt|  | Enter|Shift |_N/Spc| Bksp |   `  |
+ *                        | Ctl  | Alt  |_SYMB | Cmd  |CtlAlt|  | Enter| Tab  |_N/Spc| Bksp |   `  |
  *                        `----------------------------------'  `----------------------------------'
  */
+
+#define HOME_A LSFT_T(KC_A)
+#define HOME_S LCTL_T(KC_S)
+#define HOME_D LALT_T(KC_D)
+#define HOME_F LGUI_T(KC_F)
+
+#define HOME_J RGUI_T(KC_J)
+#define HOME_K LALT_T(KC_K)
+#define HOME_L RCTL_T(KC_L)
+#define HOME_SC RSFT_T(KC_SCLN)
+
+#define V_NUMS LT(_NUMS, KC_V)
+#define SPC_NAV LT(_NAV, KC_SPC)
+#define TO_SYMB MO(_SYMB)
+
+#define ALT_CMD A(KC_LCMD)
+#define CMD_SFT S(KC_LCMD)
+#define ALT_CTL C(KC_LALT)
+
     [_QWERTY] = LAYOUT(
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_ENT,
-        KC_ESC,  HOME_A,  KC_S,    KC_D,    HOME_F,  KC_G,                                        KC_H,    KC_J,    KC_K,    KC_L,    HOME_SC, KC_DEL,
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    ALT_CMD, CMD_SFT, KC_LSFT, KC_CAPS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-                                   KC_LCTL, KC_LALT, TO_SYMB, KC_LCMD, ALT_CTL, KC_ENT,  KC_LSFT, SPC_NUM, KC_BSPC, KC_GRV
+        KC_ESC,  HOME_A,  HOME_S,  HOME_D,  HOME_F,  KC_G,                                        KC_H,    HOME_J,  HOME_K,  HOME_L,  HOME_SC, KC_DEL,
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    V_NUMS,  KC_B,    ALT_CMD, CMD_SFT, KC_LSFT, KC_CAPS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+                                   KC_LCTL, KC_LALT, TO_SYMB, KC_LCMD, ALT_CTL, KC_ENT,  KC_TAB,  SPC_NAV, KC_BSPC, KC_GRV
     ),
 /*
  * Lower Layer: Symbols
