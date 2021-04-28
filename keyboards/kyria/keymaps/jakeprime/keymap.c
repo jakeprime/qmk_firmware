@@ -76,9 +76,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        |      |      |      |      |      |  |      |      | _RGB |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
+#define H_AMPR LSFT_T(KC_AMPR)
+#define H_PIPE LCTL_T(KC_PIPE)
+#define H_LPRN LALT_T(KC_LPRN)
+#define H_RPRN LGUI_T(KC_RPRN)
+
+#define H_UNDS RGUI_T(KC_UNDS)
+#define H_MINS LALT_T(KC_MINS)
+#define H_SLSH RCTL_T(KC_SLSH)
+#define H_COLN RSFT_T(KC_COLN)
+
     [_SYMB] = LAYOUT(
       XXXXXXX, KC_PLUS, S(KC_6), KC_LCBR, KC_RCBR, A(KC_3),                                     KC_BSLS, KC_QUOT, KC_DQUO, KC_GRV,  KC_AT,   XXXXXXX,
-      XXXXXXX, KC_AMPR, KC_PIPE, KC_LPRN, KC_RPRN, KC_DLR,                                      KC_TILD, KC_UNDS, KC_MINS, KC_SLSH, KC_COLN, XXXXXXX,
+      XXXXXXX, H_AMPR,  H_PIPE,  H_LPRN,  H_RPRN,  KC_DLR,                                      KC_TILD, H_UNDS,  H_MINS,  H_SLSH,  H_COLN,  XXXXXXX,
       XXXXXXX, KC_PERC, KC_ASTR, KC_LBRC, KC_RBRC, S(KC_3), _______, _______, _______, _______, KC_EXLM, KC_EQL,  KC_LT,   KC_GT,   KC_QUES, XXXXXXX,
                                  _______, _______, _______, _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX
     ),
@@ -135,10 +145,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_NUMS] = LAYOUT(
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                     KC_PSLS, KC_P7, KC_P8, KC_P9, KC_PPLS, XXXXXXX,
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                     KC_PAST, KC_P4, KC_P5, KC_P6, XXXXXXX, XXXXXXX,
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PMNS, KC_P1, KC_P2, KC_P3, XXXXXXX, XXXXXXX,
-                                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, KC_P0,   KC_PDOT, XXXXXXX
+      _______, _______, _______, _______, _______, _______,                                     KC_PSLS, KC_P7, KC_P8, KC_P9, KC_PPLS, _______,
+      _______, _______, _______, _______, _______, _______,                                     KC_PAST, KC_P4, KC_P5, KC_P6, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_PMNS, KC_P1, KC_P2, KC_P3, _______, _______,
+                                 _______, _______, _______, _______, _______, _______, _______, KC_P0,   KC_PDOT, _______
     )
 // /*
 //  * Layer template
