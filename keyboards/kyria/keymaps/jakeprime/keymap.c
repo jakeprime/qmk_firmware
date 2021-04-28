@@ -18,18 +18,18 @@
 enum layers {
     _QWERTY = 0,
     _SYMB,
-    _NUMS,
+    _NAV,
     _RGB,
-    _NP
+    _NUMS
 };
 
 #define HOME_A SFT_T(KC_A)
-#define HOME_F LT(_NP, KC_F)
+#define HOME_F LT(_NUMS, KC_F)
 #define TO_SYMB MO(_SYMB)
 #define ALT_CMD A(KC_LCMD)
 #define CMD_SFT S(KC_LCMD)
 #define ALT_CTL C(KC_LALT)
-#define SPC_NUM LT(_NUMS, KC_SPC)
+#define SPC_NUM LT(_NAV, KC_SPC)
 #define HOME_SC SFT_T(KC_SCLN)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -84,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        |      |      | _RGB |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
-    [_NUMS] = LAYOUT(
+    [_NAV] = LAYOUT(
       XXXXXXX, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    XXXXXXX,
       XXXXXXX, XXXXXXX, XXXXXXX, KC_MPLY, XXXXXXX, KC_VOLU,                                     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MUTE, KC_VOLD, _______, _______, _______, _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX, XXXXXXX,
@@ -123,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        |      |      |      |      |      |  |      |      |  0   |  .   |      |
  *                        `----------------------------------'  `----------------------------------'
  */
-    [_NP] = LAYOUT(
+    [_NUMS] = LAYOUT(
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                     KC_PSLS, KC_P7, KC_P8, KC_P9, KC_PPLS, XXXXXXX,
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                     KC_PAST, KC_P4, KC_P5, KC_P6, XXXXXXX, XXXXXXX,
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PMNS, KC_P1, KC_P2, KC_P3, XXXXXXX, XXXXXXX,
@@ -152,7 +152,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, _SYMB, _NUMS, _RGB);
+    return update_tri_layer_state(state, _SYMB, _NAV, _RGB);
 }
 
 #ifdef OLED_DRIVER_ENABLE
@@ -263,7 +263,7 @@ static void render_status(void) {
         case _SYMB:
             oled_write_P(PSTR("Symbols\n"), false);
             break;
-        case _NUMS:
+        case _NAV:
             oled_write_P(PSTR("Nums/Arrows\n"), false);
             break;
         case _RGB:
