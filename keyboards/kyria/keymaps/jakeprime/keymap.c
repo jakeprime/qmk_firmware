@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Lower Layer: Symbols
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |  +   |  !   |  {   |  }   |  #   |                              |   \  |  '   |  "   |  `   |  @   |        |
+ * |        |  +   |  ^   |  {   |  }   |  #   |                              |   \  |  '   |  "   |  `   |  @   |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |        |  &   |  |   |  (   |  )   |  $   |                              |   ~  |  _   |  -   |  /   |  :   |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
@@ -66,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_SYMB] = LAYOUT(
-      XXXXXXX, KC_PLUS, KC_EXLM, KC_LCBR, KC_RCBR, A(KC_3),                                     KC_BSLS, KC_QUOT, KC_DQUO, KC_GRV,  KC_AT,   XXXXXXX,
+      XXXXXXX, KC_PLUS, S(KC_6), KC_LCBR, KC_RCBR, A(KC_3),                                     KC_BSLS, KC_QUOT, KC_DQUO, KC_GRV,  KC_AT,   XXXXXXX,
       XXXXXXX, KC_AMPR, KC_PIPE, KC_LPRN, KC_RPRN, KC_DLR,                                      KC_TILD, KC_UNDS, KC_MINS, KC_SLSH, KC_COLN, XXXXXXX,
       XXXXXXX, KC_PERC, KC_ASTR, KC_LBRC, KC_RBRC, S(KC_3), _______, _______, _______, _______, KC_EXLM, KC_EQL,  KC_LT,   KC_GT,   KC_QUES, XXXXXXX,
                                  _______, _______, _______, _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX
