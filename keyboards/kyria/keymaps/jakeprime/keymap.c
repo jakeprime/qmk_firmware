@@ -16,15 +16,19 @@
 #include QMK_KEYBOARD_H
 
 enum layers {
-    _QWERTY = 0,
+    _BASE = 0,
     _SYMB,
     _NAV,
     _RGB,
     _NUMS
 };
 
+#define HALMAK
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+
+#ifndef HALMAK
+
 /*
  * Base Layer: QWERTY
  *
@@ -57,12 +61,50 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define CMD_SFT S(KC_LCMD)
 #define ALT_CTL C(KC_LALT)
 
-    [_QWERTY] = LAYOUT(
+    [_BASE] = LAYOUT(
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_ENT,
         KC_ESC,  HOME_A,  HOME_S,  HOME_D,  HOME_F,  KC_G,                                        KC_H,    HOME_J,  HOME_K,  HOME_L,  HOME_SC, KC_DEL,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    V_NUMS,  KC_B,    ALT_CMD, CMD_SFT, KC_LSFT, KC_CAPS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
                                    KC_LCTL, KC_LALT, TO_SYMB, KC_LCMD, ALT_CTL, KC_ENT,  KC_TAB,  SPC_NAV, KC_BSPC, KC_GRV
     ),
+#else
+
+/*
+ * Base Layer: HALMAK
+ *
+ * ,-------------------------------------------.                              ,-------------------------------------------.
+ * |        |   W  |   L  |   R  |   B  |   Z  |                              |   ;  |   Q  |   U  |   D  |   J  |        |
+ * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+ * |  Esc   | S  ↑ | H  ^ | N ⎇ | T  ⌘ |   ,  |                              |   .  | A  ⌘ | E  ⎇ | O  ^ | I  ↑ | Delete |
+ * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+ * |        |   F  |   M  |   V  |C/Nums|   /  |      |      |  |      | Caps |   G  |   P  |   X  |   K  |   Y  |        |
+ * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+ *                        |      |      |_SYMB |      |      |  | Enter| Tab  |_N/Spc| Bksp |      |
+ *                        `----------------------------------'  `----------------------------------'
+ */
+
+#define HOME_S LSFT_T(KC_S)
+#define HOME_H LCTL_T(KC_H)
+#define HOME_N LALT_T(KC_N)
+#define HOME_T LGUI_T(KC_T)
+
+#define HOME_A RGUI_T(KC_A)
+#define HOME_E LALT_T(KC_E)
+#define HOME_O RCTL_T(KC_O)
+#define HOME_I RSFT_T(KC_I)
+
+#define C_NUMS LT(_NUMS, KC_C)
+#define SPC_NAV LT(_NAV, KC_SPC)
+#define TO_SYMB MO(_SYMB)
+
+    [_BASE] = LAYOUT(
+        XXXXXXX, KC_W,    KC_L,    KC_R,    KC_B,    KC_Z,                                        KC_SCLN, KC_Q,    KC_U,    KC_D,    KC_J,    XXXXXXX,
+        KC_ESC,  HOME_S,  HOME_H,  HOME_N,  HOME_T,  KC_COMM,                                     KC_DOT,  HOME_A,  HOME_E,  HOME_O,  HOME_I,  KC_DEL,
+        XXXXXXX, KC_F,    KC_M,    KC_V,    C_NUMS,  KC_SLSH, XXXXXXX, XXXXXXX, XXXXXXX, KC_CAPS, KC_G,    KC_P,    KC_X,    KC_K,    KC_Y,    XXXXXXX,
+                                   XXXXXXX, XXXXXXX, TO_SYMB, XXXXXXX, XXXXXXX, KC_ENT,  KC_TAB,  SPC_NAV, KC_BSPC, XXXXXXX
+    ),
+
+#endif /* HALMAK */
 /*
  * Lower Layer: Symbols
  *
@@ -314,7 +356,7 @@ static void render_status(void) {
     // Host Keyboard Layer Status
     oled_write_P(PSTR("Layer: "), false);
     switch (get_highest_layer(layer_state)) {
-        case _QWERTY:
+        case _BASE:
             oled_write_P(PSTR("Default\n"), false);
             break;
         case _SYMB:
