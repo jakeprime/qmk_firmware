@@ -31,13 +31,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Base Layer: QWERTY
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * | HALMAK |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |        |
+ * |        |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |  Esc   | A  ↑ | S  ^ | D  ⎇ | F  ⌘ |   G  |                              |   H  | J  ⌘ | K  ⎇ | L  ^ | ;  ↑ | Delete |
+ * |        | A  ↑ | S  ^ | D  ⎇ | F  ⌘ |   G  |                              |   H  | J  ⌘ | K  ⎇ | L  ^ | ;  ↑ |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |   Z  |   X  |   C  |V/Nums|   B  |      |      |  |      | Caps |   N  |   M  | ,  < | . >  | /  ? |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |_SYMB | Esc  | Tab  |  | Enter| Bspc |_N/Spc|      |      |
+ *                        |      |  Esc |_SYMB | Tab  |HALMAK|  | Enter| Enter|_N/Spc| Bspc |      |
  *                        `----------------------------------'  `----------------------------------'
  */
 
@@ -58,17 +58,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define TO_SYMB MO(_SYMB)
 
     [_QWERTY] = LAYOUT(
-        HALMAK,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    XXXXXXX,
-        KC_ESC,  QWRT_A,  QWRT_S,  QWRT_D,  QWRT_F,  KC_G,                                        KC_H,    QWRT_J,  QWRT_K,  QWRT_L,  QWRT_SC, KC_DEL,
-        XXXXXXX, KC_Z,    KC_X,    KC_C,    V_NUMS,  KC_B,    XXXXXXX, XXXXXXX, XXXXXXX, KC_CAPS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
-                                   XXXXXXX, XXXXXXX, TO_SYMB, KC_ESC,  KC_TAB,  KC_ENT,  KC_BSPC, SPC_NAV, KC_BSPC, XXXXXXX
+        XXXXXXX, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    XXXXXXX,
+        XXXXXXX, QWRT_A,  QWRT_S,  QWRT_D,  QWRT_F,  KC_G,                                        KC_H,    QWRT_J,  QWRT_K,  QWRT_L,  QWRT_SC, XXXXXXX,
+        XXXXXXX, KC_Z,    KC_X,    KC_C,    V_NUMS,  KC_B,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
+                                   XXXXXXX, KC_ESC,  TO_SYMB, KC_TAB,  HALMAK,  KC_ENT,  KC_ENT,  SPC_NAV, KC_BSPC, XXXXXXX
     ),
 
 /*
  * Base Layer: HALMAK
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * | QWERTY |   W  |   L  |   R  |   B  |   Z  |                              |   ;  |   Q  |   U  |   D  |   J  |        |
+ * |        |   W  |   L  |   R  |   B  |   Z  |                              |   ;  |   Q  |   U  |   D  |   J  |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |        | S  ↑ | H  ^ | N  ⎇ | T  ⌘ |   ,  |                              |   .  | A  ⌘ | E  ⎇ | O  ^ | I  ↑ |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
@@ -124,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX, KC_PLUS, S(KC_6), KC_LCBR, KC_RCBR, A(KC_3),                                     KC_BSLS, KC_QUOT, KC_DQUO, KC_GRV,  KC_AT,   XXXXXXX,
       XXXXXXX, H_AMPR,  H_PIPE,  H_LPRN,  H_RPRN,  KC_DLR,                                      KC_TILD, H_UNDS,  H_MINS,  H_PLUS,  H_ASTR,  XXXXXXX,
       XXXXXXX, KC_PERC, KC_ASTR, KC_LBRC, KC_RBRC, S(KC_3), _______, _______, _______, _______, KC_EXLM, KC_EQL,  KC_LT,   KC_GT,   KC_QUES, XXXXXXX,
-                                 _______, _______, _______, _______, _______, _______, KC_DEL,  _______, KC_DEL,  XXXXXXX
+                                 _______, _______, _______, _______, _______, _______, _______, _______, KC_DEL,  XXXXXXX
     ),
 /*
  * Raise Layer: Number keys, media, navigation
