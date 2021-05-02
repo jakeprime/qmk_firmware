@@ -31,13 +31,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Base Layer: QWERTY
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * | HALMAK |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  | Enter  |
+ * | HALMAK |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |  Esc   | A  ↑ | S  ^ | D ⎇ | F  ⌘ |   G  |                              |   H  | J  ⌘ | K  ⎇ | L  ^ | ;  ↑ | Delete |
+ * |  Esc   | A  ↑ | S  ^ | D  ⎇ | F  ⌘ |   G  |                              |   H  | J  ⌘ | K  ⎇ | L  ^ | ;  ↑ | Delete |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * | LShift |   Z  |   X  |   C  |V/Nums|   B  |CmdAlt|SftCmd|  |LShift| Caps |   N  |   M  | ,  < | . >  | /  ? | RShift |
+ * |        |   Z  |   X  |   C  |V/Nums|   B  |      |      |  |      | Caps |   N  |   M  | ,  < | . >  | /  ? |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        | Ctl  | Alt  |_SYMB | Cmd  |CtlAlt|  | Enter| Tab  |_N/Spc| Bksp |   `  |
+ *                        |      |      |_SYMB |      |      |  | Enter| Tab  |_N/Spc| Bksp |      |
  *                        `----------------------------------'  `----------------------------------'
  */
 
@@ -57,15 +57,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define SPC_NAV LT(_NAV, KC_SPC)
 #define TO_SYMB MO(_SYMB)
 
-#define ALT_CMD A(KC_LCMD)
-#define CMD_SFT S(KC_LCMD)
-#define ALT_CTL C(KC_LALT)
-
     [_QWERTY] = LAYOUT(
-        HALMAK,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_ENT,
+        HALMAK,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    XXXXXXX,
         KC_ESC,  QWRT_A,  QWRT_S,  QWRT_D,  QWRT_F,  KC_G,                                        KC_H,    QWRT_J,  QWRT_K,  QWRT_L,  QWRT_SC, KC_DEL,
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    V_NUMS,  KC_B,    ALT_CMD, CMD_SFT, KC_LSFT, KC_CAPS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-                                   KC_LCTL, KC_LALT, TO_SYMB, KC_LCMD, ALT_CTL, KC_ENT,  KC_TAB,  SPC_NAV, KC_BSPC, KC_GRV
+        XXXXXXX, KC_Z,    KC_X,    KC_C,    V_NUMS,  KC_B,    XXXXXXX, XXXXXXX, XXXXXXX, KC_CAPS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
+                                   XXXXXXX, XXXXXXX, TO_SYMB, XXXXXXX, XXXXXXX, KC_ENT,  KC_TAB,  SPC_NAV, KC_BSPC, XXXXXXX
     ),
 
 /*
@@ -74,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * | QWERTY |   W  |   L  |   R  |   B  |   Z  |                              |   ;  |   Q  |   U  |   D  |   J  |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |  Esc   | S  ↑ | H  ^ | N ⎇ | T  ⌘ |   ,  |                              |   .  | A  ⌘ | E  ⎇ | O  ^ | I  ↑ | Delete |
+ * |  Esc   | S  ↑ | H  ^ | N  ⎇ | T  ⌘ |   ,  |                              |   .  | A  ⌘ | E  ⎇ | O  ^ | I  ↑ | Delete |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |   F  |   M  |   V  |C/Nums|   /  |      |      |  |      | Caps |   G  |   P  |   X  |   K  |   Y  |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
@@ -93,14 +89,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define HLMK_I RSFT_T(KC_I)
 
 #define C_NUMS LT(_NUMS, KC_C)
-#define SPC_NAV LT(_NAV, KC_SPC)
-#define TO_SYMB MO(_SYMB)
 
     [_HALMAK] = LAYOUT(
-        _______, KC_W,    KC_L,    KC_R,    KC_B,    KC_Z,                                        KC_SCLN, KC_Q,    KC_U,    KC_D,    KC_J,    XXXXXXX,
-        KC_ESC,  HLMK_S,  HLMK_H,  HLMK_N,  HLMK_T,  KC_COMM,                                     KC_DOT,  HLMK_A,  HLMK_E,  HLMK_O,  HLMK_I,  KC_DEL,
-        XXXXXXX, KC_F,    KC_M,    KC_V,    C_NUMS,  KC_SLSH, XXXXXXX, XXXXXXX, XXXXXXX, KC_CAPS, KC_G,    KC_P,    KC_X,    KC_K,    KC_Y,    XXXXXXX,
-                                   XXXXXXX, XXXXXXX, TO_SYMB, XXXXXXX, XXXXXXX, KC_ENT,  KC_TAB,  SPC_NAV, KC_BSPC, XXXXXXX
+        _______, KC_W,    KC_L,    KC_R,    KC_B,    KC_Z,                                        KC_SCLN, KC_Q,    KC_U,    KC_D,    KC_J,    _______,
+        _______, HLMK_S,  HLMK_H,  HLMK_N,  HLMK_T,  KC_COMM,                                     KC_DOT,  HLMK_A,  HLMK_E,  HLMK_O,  HLMK_I,  _______,
+        _______, KC_F,    KC_M,    KC_V,    C_NUMS,  KC_SLSH, _______, _______, _______, _______, KC_G,    KC_P,    KC_X,    KC_K,    KC_Y,    _______,
+                                   _______, _______, _______, _______, _______, _______,  _______,  _______, _______, _______
     ),
 
 /*
