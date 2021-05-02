@@ -37,7 +37,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |   Z  |   X  |   C  |V/Nums|   B  |      |      |  |      | Caps |   N  |   M  | ,  < | . >  | /  ? |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |_SYMB |      |      |  | Enter| Tab  |_N/Spc| Bksp |      |
+ *                        |      |      |_SYMB | Esc  | Tab  |  | Enter| Bspc |_N/Spc|      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
 
@@ -61,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         HALMAK,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    XXXXXXX,
         KC_ESC,  QWRT_A,  QWRT_S,  QWRT_D,  QWRT_F,  KC_G,                                        KC_H,    QWRT_J,  QWRT_K,  QWRT_L,  QWRT_SC, KC_DEL,
         XXXXXXX, KC_Z,    KC_X,    KC_C,    V_NUMS,  KC_B,    XXXXXXX, XXXXXXX, XXXXXXX, KC_CAPS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
-                                   XXXXXXX, XXXXXXX, TO_SYMB, XXXXXXX, XXXXXXX, KC_ENT,  KC_TAB,  SPC_NAV, KC_BSPC, XXXXXXX
+                                   XXXXXXX, XXXXXXX, TO_SYMB, KC_ESC,  KC_TAB,  KC_ENT,  KC_BSPC, SPC_NAV, KC_BSPC, XXXXXXX
     ),
 
 /*
@@ -70,11 +70,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * | QWERTY |   W  |   L  |   R  |   B  |   Z  |                              |   ;  |   Q  |   U  |   D  |   J  |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |  Esc   | S  ↑ | H  ^ | N  ⎇ | T  ⌘ |   ,  |                              |   .  | A  ⌘ | E  ⎇ | O  ^ | I  ↑ | Delete |
+ * |        | S  ↑ | H  ^ | N  ⎇ | T  ⌘ |   ,  |                              |   .  | A  ⌘ | E  ⎇ | O  ^ | I  ↑ |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |   F  |   M  |   V  |C/Nums|   /  |      |      |  |      | Caps |   G  |   P  |   X  |   K  |   Y  |        |
+ * |        |   F  |   M  |   V  |C/Nums|   /  |      |      |  |      |      |   G  |   P  |   X  |   K  |   Y  |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |_SYMB |      |      |  | Enter| Tab  |_N/Spc| Bksp |      |
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
 
@@ -107,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |  %   |  *   |  [   |  ]   |  £   |      |      |  |      |      |   !  |  =   |  <   |  >   |  ?   |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |      |      |      |  |      |      | _RGB |      |      |
+ *                        |      |      |      |      |      |  |      |  Del | _RGB |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
 #define H_AMPR LSFT_T(KC_AMPR)
@@ -124,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX, KC_PLUS, S(KC_6), KC_LCBR, KC_RCBR, A(KC_3),                                     KC_BSLS, KC_QUOT, KC_DQUO, KC_GRV,  KC_AT,   XXXXXXX,
       XXXXXXX, H_AMPR,  H_PIPE,  H_LPRN,  H_RPRN,  KC_DLR,                                      KC_TILD, H_UNDS,  H_MINS,  H_PLUS,  H_ASTR,  XXXXXXX,
       XXXXXXX, KC_PERC, KC_ASTR, KC_LBRC, KC_RBRC, S(KC_3), _______, _______, _______, _______, KC_EXLM, KC_EQL,  KC_LT,   KC_GT,   KC_QUES, XXXXXXX,
-                                 _______, _______, _______, _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX
+                                 _______, _______, _______, _______, _______, _______, KC_DEL,  _______, KC_DEL,  XXXXXXX
     ),
 /*
  * Raise Layer: Number keys, media, navigation
