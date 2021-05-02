@@ -109,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |        |  +   |  ^   |  {   |  }   |  #   |                              |   \  |  '   |  "   |  `   |  @   |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |  &   |  |   |  (   |  )   |  $   |                              |   ~  |  _   |  -   |  +   |  :   |        |
+ * |        |  &   |  |   |  (   |  )   |  $   |                              |   ~  |  _   |  -   |  +   |  *   |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |  %   |  *   |  [   |  ]   |  £   |      |      |  |      |      |   !  |  =   |  <   |  >   |  ?   |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
@@ -124,11 +124,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define H_UNDS RGUI_T(KC_UNDS)
 #define H_MINS LALT_T(KC_MINS)
 #define H_PLUS RCTL_T(KC_PLUS)
-#define H_COLN RSFT_T(KC_COLN)
+#define H_ASTR RSFT_T(KC_ASTR)
 
     [_SYMB] = LAYOUT(
       XXXXXXX, KC_PLUS, S(KC_6), KC_LCBR, KC_RCBR, A(KC_3),                                     KC_BSLS, KC_QUOT, KC_DQUO, KC_GRV,  KC_AT,   XXXXXXX,
-      XXXXXXX, H_AMPR,  H_PIPE,  H_LPRN,  H_RPRN,  KC_DLR,                                      KC_TILD, H_UNDS,  H_MINS,  H_PLUS,  H_COLN,  XXXXXXX,
+      XXXXXXX, H_AMPR,  H_PIPE,  H_LPRN,  H_RPRN,  KC_DLR,                                      KC_TILD, H_UNDS,  H_MINS,  H_PLUS,  H_ASTR,  XXXXXXX,
       XXXXXXX, KC_PERC, KC_ASTR, KC_LBRC, KC_RBRC, S(KC_3), _______, _______, _______, _______, KC_EXLM, KC_EQL,  KC_LT,   KC_GT,   KC_QUES, XXXXXXX,
                                  _______, _______, _______, _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX
     ),
@@ -245,8 +245,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return process_key_tap(KC_UNDS, record);
         case H_PLUS:
             return process_key_tap(KC_PLUS, record);
-        case H_COLN:
-            return process_key_tap(KC_COLN, record);
+        case H_ASTR:
+            return process_key_tap(KC_ASTR, record);
         default:
             return true;
     }
