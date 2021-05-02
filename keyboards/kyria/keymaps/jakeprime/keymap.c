@@ -16,24 +16,22 @@
 #include QMK_KEYBOARD_H
 
 enum layers {
-    _BASE = 0,
+    _QWERTY = 0,
+    _HALMAK,
     _SYMB,
     _NAV,
     _RGB,
     _NUMS
 };
 
-#define HALMAK
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-
-#ifndef HALMAK
 
 /*
  * Base Layer: QWERTY
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |   Tab  |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  | Enter  |
+ * | HALMAK |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  | Enter  |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |  Esc   | A  ↑ | S  ^ | D ⎇ | F  ⌘ |   G  |                              |   H  | J  ⌘ | K  ⎇ | L  ^ | ;  ↑ | Delete |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
@@ -43,15 +41,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
 
-#define HOME_A LSFT_T(KC_A)
-#define HOME_S LCTL_T(KC_S)
-#define HOME_D LALT_T(KC_D)
-#define HOME_F LGUI_T(KC_F)
+#define HALMAK TG(_HALMAK)
 
-#define HOME_J RGUI_T(KC_J)
-#define HOME_K LALT_T(KC_K)
-#define HOME_L RCTL_T(KC_L)
-#define HOME_SC RSFT_T(KC_SCLN)
+#define QWRT_A LSFT_T(KC_A)
+#define QWRT_S LCTL_T(KC_S)
+#define QWRT_D LALT_T(KC_D)
+#define QWRT_F LGUI_T(KC_F)
+
+#define QWRT_J RGUI_T(KC_J)
+#define QWRT_K LALT_T(KC_K)
+#define QWRT_L RCTL_T(KC_L)
+#define QWRT_SC RSFT_T(KC_SCLN)
 
 #define V_NUMS LT(_NUMS, KC_V)
 #define SPC_NAV LT(_NAV, KC_SPC)
@@ -61,19 +61,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define CMD_SFT S(KC_LCMD)
 #define ALT_CTL C(KC_LALT)
 
-    [_BASE] = LAYOUT(
-        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_ENT,
-        KC_ESC,  HOME_A,  HOME_S,  HOME_D,  HOME_F,  KC_G,                                        KC_H,    HOME_J,  HOME_K,  HOME_L,  HOME_SC, KC_DEL,
+    [_QWERTY] = LAYOUT(
+        HALMAK,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_ENT,
+        KC_ESC,  QWRT_A,  QWRT_S,  QWRT_D,  QWRT_F,  KC_G,                                        KC_H,    QWRT_J,  QWRT_K,  QWRT_L,  QWRT_SC, KC_DEL,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    V_NUMS,  KC_B,    ALT_CMD, CMD_SFT, KC_LSFT, KC_CAPS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
                                    KC_LCTL, KC_LALT, TO_SYMB, KC_LCMD, ALT_CTL, KC_ENT,  KC_TAB,  SPC_NAV, KC_BSPC, KC_GRV
     ),
-#else
 
 /*
  * Base Layer: HALMAK
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |   W  |   L  |   R  |   B  |   Z  |                              |   ;  |   Q  |   U  |   D  |   J  |        |
+ * | QWERTY |   W  |   L  |   R  |   B  |   Z  |                              |   ;  |   Q  |   U  |   D  |   J  |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |  Esc   | S  ↑ | H  ^ | N ⎇ | T  ⌘ |   ,  |                              |   .  | A  ⌘ | E  ⎇ | O  ^ | I  ↑ | Delete |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
@@ -83,28 +82,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
 
-#define HOME_S LSFT_T(KC_S)
-#define HOME_H LCTL_T(KC_H)
-#define HOME_N LALT_T(KC_N)
-#define HOME_T LGUI_T(KC_T)
+#define HLMK_S LSFT_T(KC_S)
+#define HLMK_H LCTL_T(KC_H)
+#define HLMK_N LALT_T(KC_N)
+#define HLMK_T LGUI_T(KC_T)
 
-#define HOME_A RGUI_T(KC_A)
-#define HOME_E LALT_T(KC_E)
-#define HOME_O RCTL_T(KC_O)
-#define HOME_I RSFT_T(KC_I)
+#define HLMK_A RGUI_T(KC_A)
+#define HLMK_E LALT_T(KC_E)
+#define HLMK_O RCTL_T(KC_O)
+#define HLMK_I RSFT_T(KC_I)
 
 #define C_NUMS LT(_NUMS, KC_C)
 #define SPC_NAV LT(_NAV, KC_SPC)
 #define TO_SYMB MO(_SYMB)
 
-    [_BASE] = LAYOUT(
-        XXXXXXX, KC_W,    KC_L,    KC_R,    KC_B,    KC_Z,                                        KC_SCLN, KC_Q,    KC_U,    KC_D,    KC_J,    XXXXXXX,
-        KC_ESC,  HOME_S,  HOME_H,  HOME_N,  HOME_T,  KC_COMM,                                     KC_DOT,  HOME_A,  HOME_E,  HOME_O,  HOME_I,  KC_DEL,
+    [_HALMAK] = LAYOUT(
+        _______, KC_W,    KC_L,    KC_R,    KC_B,    KC_Z,                                        KC_SCLN, KC_Q,    KC_U,    KC_D,    KC_J,    XXXXXXX,
+        KC_ESC,  HLMK_S,  HLMK_H,  HLMK_N,  HLMK_T,  KC_COMM,                                     KC_DOT,  HLMK_A,  HLMK_E,  HLMK_O,  HLMK_I,  KC_DEL,
         XXXXXXX, KC_F,    KC_M,    KC_V,    C_NUMS,  KC_SLSH, XXXXXXX, XXXXXXX, XXXXXXX, KC_CAPS, KC_G,    KC_P,    KC_X,    KC_K,    KC_Y,    XXXXXXX,
                                    XXXXXXX, XXXXXXX, TO_SYMB, XXXXXXX, XXXXXXX, KC_ENT,  KC_TAB,  SPC_NAV, KC_BSPC, XXXXXXX
     ),
 
-#endif /* HALMAK */
 /*
  * Lower Layer: Symbols
  *
@@ -351,13 +349,16 @@ static void render_qmk_logo(void) {
 static void render_status(void) {
     // QMK Logo and version information
     render_qmk_logo();
-    oled_write_P(PSTR("Kyria rev1.0\njakeprime 0.8\n"), false);
+    oled_write_P(PSTR("Kyria rev1.0\njakeprime 0.9\n"), false);
 
     // Host Keyboard Layer Status
     oled_write_P(PSTR("Layer: "), false);
     switch (get_highest_layer(layer_state)) {
-        case _BASE:
-            oled_write_P(PSTR("Default\n"), false);
+        case _QWERTY:
+            oled_write_P(PSTR("Qwerty\n"), false);
+            break;
+        case _HALMAK:
+            oled_write_P(PSTR("Halmak\n"), false);
             break;
         case _SYMB:
             oled_write_P(PSTR("Symbols\n"), false);
