@@ -118,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define H_UNDS RGUI_T(KC_UNDS)
 #define H_MINS LALT_T(KC_MINS)
 #define H_PLUS RCTL_T(KC_PLUS)
-#define H_COLN RSFT_T(KC_COLN)
+#define H_COLN RSFT_T(KC_F24)
 
     [_SYMB] = LAYOUT(
       XXXXXXX, KC_PLUS, S(KC_6), KC_LCBR, KC_RCBR, A(KC_3),                                     KC_BSLS, KC_QUOT, KC_DQUO, KC_GRV,  KC_AT,   XXXXXXX,
