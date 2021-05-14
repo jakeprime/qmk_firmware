@@ -129,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Numbers, navigation
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |  *   |  7   |  8   |  9   |  +   |                              |      |      |      |      |      |        |
+ * |        |  *   |  7   |  8   |  9   |  +   |                              |      |  M1  |  M2  |  M3  |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |        |  /   |  4   |  5   |  6   |  -   |                              | Left | Down | Up   | Right|      |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
@@ -139,7 +139,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_NAV] = LAYOUT(
-      XXXXXXX, KC_ASTR, KC_7,    KC_8,    KC_9,    KC_PLUS,                                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, KC_ASTR, KC_7,    KC_8,    KC_9,    KC_PLUS,                                     XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, XXXXXXX, XXXXXXX,
       XXXXXXX, KC_SLSH, KC_4,    KC_5,    KC_6,    KC_MINS,                                     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
       XXXXXXX, XXXXXXX, KC_1,    KC_2,    KC_3,    XXXXXXX, _______, _______, _______, _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX, XXXXXXX,
                                  XXXXXXX, KC_DOT,  KC_0,    _______, _______, _______, _______, _______, _______, XXXXXXX
