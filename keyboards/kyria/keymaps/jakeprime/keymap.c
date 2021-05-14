@@ -20,6 +20,7 @@ enum layers {
     _HALMAK,
     _SYMB,
     _NAV,
+    _MEDIA,
     _RGB
 };
 
@@ -36,7 +37,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |   Z  |   X  |   C  |V/Nums|   B  |      |      |  |      | Caps |   N  |   M  | ,  < | . >  | /  ? |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |  Esc |_SYMB | Tab  |HALMAK|  | Enter| Enter|_N/Spc| Bspc |      |
+ *                        |      |_M/Esc|_SYMB | Tab  |HALMAK|  | Enter| Enter|_N/Spc| Bspc |      |
  *                        `----------------------------------'  `----------------------------------'
  */
 
@@ -52,6 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define QWRT_L RCTL_T(KC_L)
 #define QWRT_SC RSFT_T(KC_SCLN)
 
+#define ESC_MED LT(_MEDIA, KC_ESC)
 #define SPC_NAV LT(_NAV, KC_SPC)
 #define TO_SYMB MO(_SYMB)
 
@@ -59,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    XXXXXXX,
         XXXXXXX, QWRT_A,  QWRT_S,  QWRT_D,  QWRT_F,  KC_G,                                        KC_H,    QWRT_J,  QWRT_K,  QWRT_L,  QWRT_SC, XXXXXXX,
         XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
-                                   XXXXXXX, KC_ESC,  TO_SYMB, KC_TAB,  HALMAK,  XXXXXXX,  KC_ENT,  SPC_NAV, KC_BSPC, XXXXXXX
+                                   XXXXXXX, ESC_MED, TO_SYMB, KC_TAB,  HALMAK,  XXXXXXX, KC_ENT,  SPC_NAV, KC_BSPC, XXXXXXX
     ),
 
 /*
@@ -143,24 +145,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
 /*
- * Adjust Layer: Function keys, RGB
+ * Media
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        | F1   |  F2  | F3   | F4   | F5   |                              | F6   | F7   |  F8  | F9   | F10  |        |
+ * |        |      |      |      |      |      |                              |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        | TOG  | SAI  | HUI  | VAI  | MOD  |                              |      |      |      | F11  | F12  |        |
+ * |        |      |      |      |      |      |                              | Prev | VolD | VolU | Next |      |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |      | SAD  | HUD  | VAD  | RMOD |      |      |  |      |      |      |      |      |      |      |        |
+ * |        |      |      |      |      |      |      |      |  |      |      |      |      |      |      |      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |      |      |      |  |      |      |      |      |      |
- *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        |      |      |      |      |      |  |      |      | Play | Mute |      |
  *                        `----------------------------------'  `----------------------------------'
  */
-    [_RGB] = LAYOUT(
-      XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                       KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  XXXXXXX,
-      XXXXXXX, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     XXXXXXX, XXXXXXX, XXXXXXX, KC_F11,  KC_F12,  XXXXXXX,
-      XXXXXXX, XXXXXXX, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                                 XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
+
+#define FINE_VU LSA(KC_VOLU)
+#define FINE_VD LSA(KC_VOLD)
+    [_MEDIA] = LAYOUT(
+      _______, _______, _______, _______, _______, _______,                                     _______, FINE_VD, FINE_VU, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______,                                     KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+                                 _______, _______, _______, _______, _______, _______, _______, KC_MPLY, KC_MUTE, _______
     ),
 
 // /*
