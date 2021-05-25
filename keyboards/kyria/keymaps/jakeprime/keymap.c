@@ -35,9 +35,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |        | A  ↑ | S  ^ | D  ⎇ | F  ⌘ |   G  |                              |   H  | J  ⌘ | K  ⎇ | L  ^ | ;  ↑ |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |   Z  |   X  |   C  |V/Nums|   B  |      |      |  |      | Caps |   N  |   M  | ,  < | . >  | /  ? |        |
+ * |        |   Z  |   X  |   C  |V/Nums|   B  |      |      |  |      |      |   N  |   M  | ,  < | . >  | /  ? |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |_M/Esc|_SYMB | Tab  |HALMAK|  | Enter| Enter|_N/Spc| Bspc |      |
+ *                        |      |_M/Esc|_SYMB | Tab  |HALMAK|  | Caps | Enter|_N/Spc| Bspc |      |
  *                        `----------------------------------'  `----------------------------------'
  */
 
@@ -62,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    XXXXXXX,
         XXXXXXX, QWRT_A,  QWRT_S,  QWRT_D,  QWRT_F,  KC_G,                                        KC_H,    QWRT_J,  QWRT_K,  QWRT_L,  QWRT_SC, XXXXXXX,
         XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
-                                   XXXXXXX, ESC_MED, DEL_SYM, CMD_TAB, HALMAK,  XXXXXXX, KC_ENT,  SPC_NAV, KC_BSPC, XXXXXXX
+                                   XXXXXXX, ESC_MED, DEL_SYM, CMD_TAB, HALMAK,  KC_CAPS, KC_ENT,  SPC_NAV, KC_BSPC, XXXXXXX
     ),
 
 /*
