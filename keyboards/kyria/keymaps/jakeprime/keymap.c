@@ -164,8 +164,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
 
-#define FINE_VU LSA(KC_VOLU)
-#define FINE_VD LSA(KC_VOLD)
+#define FINE_VU LSA(KC__VOLUP)
+#define FINE_VD LSA(KC__VOLDOWN)
     [_MEDIA] = LAYOUT(
       _______, _______, _______, _______, _______, _______,                                     _______, FINE_VD, FINE_VU, _______, _______, _______,
       _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, _______, _______,
