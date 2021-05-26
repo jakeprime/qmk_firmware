@@ -314,15 +314,13 @@ void oled_task_user(void) {
 #ifdef ENCODER_ENABLE
 void encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
-        // Volume control
         if (clockwise) {
-            tap_code(KC_VOLU);
+            tap_code16(FINE_VD);
         } else {
-            tap_code(KC_VOLD);
+            tap_code16(FINE_VU);
         }
     }
     else if (index == 1) {
-        // Page up/Page down
         if (clockwise) {
             tap_code(KC_PGDN);
         } else {
