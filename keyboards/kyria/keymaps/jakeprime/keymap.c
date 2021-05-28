@@ -25,7 +25,9 @@ enum layers {
 };
 
 enum my_keycodes {
-    JP_COLN = SAFE_RANGE
+    JP_COLN = SAFE_RANGE,
+    JP_RED,
+    JP_RNBW
 };
 
 
@@ -158,7 +160,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Media
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |      |      |      |      |      |                              |      |      |      |      |      |        |
+ * |        |      |      | Rnbw |  Red |      |                              |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |        | RGB  | SAI  | HUI  | VAI  | MOD  |                              | Prev | VolD | VolU | Next |      |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
@@ -171,7 +173,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define FINE_VU LSA(KC__VOLUP)
 #define FINE_VD LSA(KC__VOLDOWN)
     [_MEDIA] = LAYOUT(
-      _______, _______, _______, _______, _______, _______,                                     _______, FINE_VD, FINE_VU, _______, _______, _______,
+      _______, _______, _______, JP_RNBW, JP_RED,  _______,                                     _______, FINE_VD, FINE_VU, _______, _______, _______,
       _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, _______, _______,
       _______, KC_SLEP, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,_______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
                                  _______, _______, _______, _______, _______, _______, _______, KC_MPLY, KC_MUTE, _______
@@ -230,6 +232,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return process_key_tap(KC_PLUS, record);
         case H_COLN:
             return process_key_tap(KC_COLN, record);
+
+        case JP_RED:
+            rgblight_enable();
+            rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
+            rgblight_sethsv(0, 255, 255);
+            return true;
+        case JP_RNBW:
+            rgblight_enable();
+            rgblight_mode(RGBLIGHT_MODE_RAINBOW_SWIRL + 4);
+            return true;
+
         default:
             return true;
     }
