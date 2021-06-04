@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
+#include <stdio.h>
 
 enum layers {
     _QWERTY = 0,
@@ -30,6 +31,7 @@ enum my_keycodes {
     JP_RNBW
 };
 
+uint16_t show_rgb_stats_timer;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -217,6 +219,8 @@ bool process_key_tap(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
+static bool show_rgb_stats = false;
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch(keycode){
         case H_AMPR:
@@ -239,10 +243,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             rgblight_enable();
             rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
             rgblight_sethsv(0, 255, 255);
+            show_rgb_stats_timer = timer_read();
+            show_rgb_stats = true;
             return true;
         case JP_RNBW:
             rgblight_enable();
             rgblight_mode(RGBLIGHT_MODE_RAINBOW_SWIRL + 4);
+            show_rgb_stats_timer = timer_read();
+            show_rgb_stats = true;
+            return true;
+
+        case RGB_HUI: case RGB_HUD:
+        case RGB_SAI: case RGB_SAD:
+        case RGB_VAI: case RGB_VAD:
+        case RGB_MOD: case RGB_RMOD:
+        case RGB_TOG:
+            show_rgb_stats_timer = timer_read();
+            show_rgb_stats = true;
             return true;
 
         default:
@@ -325,8 +342,43 @@ static void render_pentagram(void) {
     oled_write_raw_P(pentagram, sizeof(pentagram));
 }
 
+static char *readable_rgb_mode(void) {
+    int mode = rgblight_get_mode();
+    static char buf[16];
+    if (mode >= RGBLIGHT_MODE_TWINKLE) sprintf(buf, "Twinkle %d", mode - RGBLIGHT_MODE_TWINKLE + 1);
+    else if (mode >= RGBLIGHT_MODE_ALTERNATING) sprintf(buf, "Alternating");
+    else if (mode >= RGBLIGHT_MODE_RGB_TEST) sprintf(buf, "RGB Test");
+    else if (mode >= RGBLIGHT_MODE_STATIC_GRADIENT) sprintf(buf, "Gradient %d", mode - RGBLIGHT_MODE_STATIC_GRADIENT + 1);
+    else if (mode >= RGBLIGHT_MODE_CHRISTMAS) sprintf(buf, "Christmas");
+    else if (mode >= RGBLIGHT_MODE_KNIGHT) sprintf(buf, "Knight %d", mode - RGBLIGHT_MODE_KNIGHT + 1);
+    else if (mode >= RGBLIGHT_MODE_SNAKE) sprintf(buf, "Snake %d", mode - RGBLIGHT_MODE_SNAKE + 1);
+    else if (mode >= RGBLIGHT_MODE_RAINBOW_SWIRL) sprintf(buf, "Rainbow swirl %d", mode - RGBLIGHT_MODE_RAINBOW_SWIRL + 1);
+    else if (mode >= RGBLIGHT_MODE_RAINBOW_MOOD) sprintf(buf, "Rainbow mood %d", mode - RGBLIGHT_MODE_RAINBOW_MOOD + 1);
+    else if (mode >= RGBLIGHT_MODE_BREATHING) sprintf(buf, "Breathing %d", mode - RGBLIGHT_MODE_BREATHING + 1);
+    else if (mode >= RGBLIGHT_MODE_STATIC_LIGHT) sprintf(buf, "Solid color");
+    return buf;
+}
+
+static void render_rgb_stats(void) {
+#ifdef RGBLIGHT_ENABLE
+    char buf[64];
+    snprintf(buf, sizeof(buf), "%s\n\nHue: %d\nSat: %d\nVal: %d\n\n\n\n",
+            readable_rgb_mode(),
+            rgblight_get_hue(),
+            rgblight_get_sat(),
+            rgblight_get_val());
+    oled_write(buf, false);
+#endif
+}
+
 void oled_task_user(void) {
-    render_pentagram();
+    if (timer_elapsed(show_rgb_stats_timer) > 3000) show_rgb_stats = false;
+
+    if (show_rgb_stats) {
+        render_rgb_stats();
+    } else {
+        render_pentagram();
+    }
 }
 #endif
 
