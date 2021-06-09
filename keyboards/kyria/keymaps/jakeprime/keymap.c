@@ -51,15 +51,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #define HALMAK TG(_HALMAK)
 
-#define QWRT_A LSFT_T(KC_A)
-#define QWRT_S LCTL_T(KC_S)
-#define QWRT_D LALT_T(KC_D)
-#define QWRT_F LGUI_T(KC_F)
+#define QWRT_A LCTL_T(KC_A)
+#define QWRT_S LALT_T(KC_S)
+#define QWRT_D LGUI_T(KC_D)
+#define QWRT_F LSFT_T(KC_F)
 
-#define QWRT_J RGUI_T(KC_J)
-#define QWRT_K LALT_T(KC_K)
-#define QWRT_L RCTL_T(KC_L)
-#define QWRT_SC RSFT_T(KC_SCLN)
+#define QWRT_J RSFT_T(KC_J)
+#define QWRT_K RGUI_T(KC_K)
+#define QWRT_L LALT_T(KC_L)
+#define QWRT_SC RCTL_T(KC_SCLN)
 
 #define ESC_CMD LGUI_T(KC_ESC)
 #define SPC_NAV LT(_NAV, KC_SPC)
@@ -118,15 +118,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
-#define H_AMPR LSFT_T(KC_AMPR)
-#define H_PIPE LCTL_T(KC_PIPE)
-#define H_LPRN LALT_T(KC_LPRN)
-#define H_RPRN LGUI_T(KC_RPRN)
+#define H_AMPR LCTL_T(KC_AMPR)
+#define H_PIPE LALT_T(KC_PIPE)
+#define H_LPRN LGUI_T(KC_LPRN)
+#define H_RPRN LSFT_T(KC_RPRN)
 
-#define H_UNDS RGUI_T(KC_UNDS)
-#define H_MINS LALT_T(KC_MINS)
-#define H_PLUS RCTL_T(KC_PLUS)
-#define H_COLN RSFT_T(JP_COLN)
+#define H_UNDS RSFT_T(KC_UNDS)
+#define H_MINS RGUI_T(KC_MINS)
+#define H_PLUS LALT_T(KC_PLUS)
+#define H_COLN RCTL_T(JP_COLN)
 
     [_SYMB] = LAYOUT(
       XXXXXXX, KC_PLUS, S(KC_6), KC_LCBR, KC_RCBR, A(KC_3),                                     KC_BSLS, KC_QUOT, KC_DQUO, KC_GRV,  KC_AT,   XXXXXXX,
@@ -147,10 +147,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        |      |  .   |  0   |  Del |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
-#define H_SLSH LSFT_T(KC_SLSH)
-#define H_4 LCTL_T(KC_4)
-#define H_5 LALT_T(KC_5)
-#define H_6 LGUI_T(KC_6)
+#define H_SLSH LCTL_T(KC_SLSH)
+#define H_4 LALT_T(KC_4)
+#define H_5 LGUI_T(KC_5)
+#define H_6 LSFT_T(KC_6)
 
     [_NAV] = LAYOUT(
       XXXXXXX, KC_ASTR, KC_7,    KC_8,    KC_9,    KC_PLUS,                                     XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, XXXXXXX, XXXXXXX,
