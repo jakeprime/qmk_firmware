@@ -21,8 +21,8 @@ enum layers {
     _HALMAK,
     _SYMB,
     _NAV,
-    _MEDIA,
-    _RGB
+    _NUMS,
+    _MEDIA
 };
 
 enum my_keycodes {
@@ -45,7 +45,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |   Z  |   X  |   C  |   V  |   B  |      |      |  |      |      |   N  |   M  | ,  < | . >  | /  ? |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |Md/Esc|Sy/Tab|CmdDel|HALMAK|  | Caps | Enter|Nv/Spc| Bspc |      |
+ *                        |      |CmdEsc|Sy/Tab|Np/Del|HALMAK|  | Caps | Enter|Nv/Spc| Bspc |      |
  *                        `----------------------------------'  `----------------------------------'
  */
 
@@ -61,16 +61,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define QWRT_L RCTL_T(KC_L)
 #define QWRT_SC RSFT_T(KC_SCLN)
 
-#define ESC_MED LT(_MEDIA, KC_ESC)
+#define ESC_CMD LGUI_T(KC_ESC)
 #define SPC_NAV LT(_NAV, KC_SPC)
 #define TAB_SYM LT(_SYMB, KC_TAB)
-#define DEL_CMD LGUI_T(KC_DEL)
+#define NUM_DEL LT(_NUMS, KC_DEL)
+#define MED_ENT LT(_MEDIA, KC_ENT)
 
     [_QWERTY] = LAYOUT(
         XXXXXXX, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    XXXXXXX,
         XXXXXXX, QWRT_A,  QWRT_S,  QWRT_D,  QWRT_F,  KC_G,                                        KC_H,    QWRT_J,  QWRT_K,  QWRT_L,  QWRT_SC, XXXXXXX,
         XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
-                                   XXXXXXX, ESC_MED, TAB_SYM, DEL_CMD, HALMAK,  KC_CAPS, KC_ENT,  SPC_NAV, KC_BSPC, XXXXXXX
+                                   XXXXXXX, ESC_CMD, TAB_SYM, NUM_DEL, HALMAK,  KC_CAPS, MED_ENT, SPC_NAV, KC_BSPC, XXXXXXX
     ),
 
 /*
@@ -134,7 +135,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, XXXXXXX
     ),
 /*
- * Numbers, navigation
+ * Navigation
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |        |  *   |  7   |  8   |  9   |  +   |                              |      |  M1  |  M2  |  M3  |      |        |
@@ -159,16 +160,36 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
 /*
+ * Numpad
+ *
+ * ,-------------------------------------------.                              ,-------------------------------------------.
+ * |        |      |      |      |      |      |                              |      |   7  |   8  |   9  |      |        |
+ * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |                              |   +  |   4  |   5  |   6  |   *  |        |
+ * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |      |      |  |      |      |   -  |   1  |   2  |   3  |   /  |        |
+ * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+ *                        |      |      |      |      |      |  |      |      |   0  |      |      |
+ *                        `----------------------------------'  `----------------------------------'
+ */
+    [_NUMS] = LAYOUT(
+      _______, _______, _______, _______, _______, _______,                                     _______, KC_7,    KC_8,    KC_9,    _______, _______,
+      _______, _______, _______, _______, _______, _______,                                     KC_PLUS, KC_4,    KC_5,    KC_6,    KC_ASTR, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MINS, KC_1,    KC_2,    KC_3,    KC_SLSH, _______,
+                                 _______, _______, _______, _______, _______, _______, _______, KC_0,    _______, _______
+    ),
+
+/*
  * Media
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |      |      | Rnbw |  Red |      |                              |      |      |      |      |      |        |
+ * |        |      |      | Rnbw |  Red |      |                              |      | VolD-| VolU-|      |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        | RGB  | SAI  | HUI  | VAI  | MOD  |                              | Prev | VolD | VolU | Next |      |        |
+ * |        | RGB  | SAI  | HUI  | VAI  | MOD  |                              | Prev | VolD+| VolU+| Next | Mute |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        | Sleep| SAD  | HUD  | VAD  | RMO  |      |      |  |      |      |      |      |      |      |      |        |
+ * |        | Sleep| SAD  | HUD  | VAD  | RMO  |      |      |  |      |      |      | Play |      |      |      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |      |      |      |  |      | Scrn | Play | Mute |      |
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
 
@@ -178,9 +199,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_MEDIA] = LAYOUT(
       _______, _______, _______, JP_RNBW, JP_RED,  _______,                                     _______, FINE_VD, FINE_VU, _______, _______, _______,
-      _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, _______, _______,
-      _______, KC_SLEP, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,_______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-                                 _______, _______, _______, _______, _______, _______, SCR_CPY, KC_MPLY, KC_MUTE, _______
+      _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, KC_MUTE, _______,
+      _______, KC_SLEP, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,_______, _______, _______, _______, _______, KC_MPLY, _______, _______, _______, _______,
+                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
 // /*
