@@ -185,9 +185,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |        |      |      | Rnbw |  Red |      |                              |      | VolD-| VolU-|      |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        | RGB  | SAI  | HUI  | VAI  | MOD  |                              | Prev | VolD+| VolU+| Next | Mute |        |
+ * |        | RGB  | SAI  | HUI  | VAI  | MOD  |                              | Prev | VolD+| VolU+| Next |  RGB |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        | Sleep| SAD  | HUD  | VAD  | RMO  |      |      |  |      |      |      | Play |      |      |      |        |
+ * |        | Sleep| SAD  | HUD  | VAD  | RMO  |      |      |  |      |      |      | Play | Mute |      | Sleep|        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
@@ -199,8 +199,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_MEDIA] = LAYOUT(
       _______, _______, _______, JP_RNBW, JP_RED,  _______,                                     _______, FINE_VD, FINE_VU, _______, _______, _______,
-      _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, KC_MUTE, _______,
-      _______, KC_SLEP, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,_______, _______, _______, _______, _______, KC_MPLY, _______, _______, _______, _______,
+      _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, RGB_TOG, _______,
+      _______, KC_SLEP, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,_______, _______, _______, _______, _______, KC_MPLY, KC_MUTE, _______, KC_SLEP, _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
