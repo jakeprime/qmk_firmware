@@ -366,17 +366,18 @@ static void render_pentagram(void) {
 static char *readable_rgb_mode(void) {
     int mode = rgblight_get_mode();
     static char buf[16];
-    if (mode >= RGBLIGHT_MODE_TWINKLE) sprintf(buf, "Twinkle %d", mode - RGBLIGHT_MODE_TWINKLE + 1);
-    else if (mode >= RGBLIGHT_MODE_ALTERNATING) sprintf(buf, "Alternating");
-    else if (mode >= RGBLIGHT_MODE_RGB_TEST) sprintf(buf, "RGB Test");
-    else if (mode >= RGBLIGHT_MODE_STATIC_GRADIENT) sprintf(buf, "Gradient %d", mode - RGBLIGHT_MODE_STATIC_GRADIENT + 1);
-    else if (mode >= RGBLIGHT_MODE_CHRISTMAS) sprintf(buf, "Christmas");
-    else if (mode >= RGBLIGHT_MODE_KNIGHT) sprintf(buf, "Knight %d", mode - RGBLIGHT_MODE_KNIGHT + 1);
-    else if (mode >= RGBLIGHT_MODE_SNAKE) sprintf(buf, "Snake %d", mode - RGBLIGHT_MODE_SNAKE + 1);
-    else if (mode >= RGBLIGHT_MODE_RAINBOW_SWIRL) sprintf(buf, "Rainbow swirl %d", mode - RGBLIGHT_MODE_RAINBOW_SWIRL + 1);
-    else if (mode >= RGBLIGHT_MODE_RAINBOW_MOOD) sprintf(buf, "Rainbow mood %d", mode - RGBLIGHT_MODE_RAINBOW_MOOD + 1);
-    else if (mode >= RGBLIGHT_MODE_BREATHING) sprintf(buf, "Breathing %d", mode - RGBLIGHT_MODE_BREATHING + 1);
-    else if (mode >= RGBLIGHT_MODE_STATIC_LIGHT) sprintf(buf, "Solid color");
+    // if (mode >= RGBLIGHT_MODE_TWINKLE) sprintf(buf, "Twinkle %d", mode - RGBLIGHT_MODE_TWINKLE + 1);
+    // else if (mode >= RGBLIGHT_MODE_ALTERNATING) sprintf(buf, "Alternating");
+    // else if (mode >= RGBLIGHT_MODE_RGB_TEST) sprintf(buf, "RGB Test");
+    // else if (mode >= RGBLIGHT_MODE_STATIC_GRADIENT) sprintf(buf, "Gradient %d", mode - RGBLIGHT_MODE_STATIC_GRADIENT + 1);
+    // else if (mode >= RGBLIGHT_MODE_CHRISTMAS) sprintf(buf, "Christmas");
+    // else if (mode >= RGBLIGHT_MODE_KNIGHT) sprintf(buf, "Knight %d", mode - RGBLIGHT_MODE_KNIGHT + 1);
+    // else if (mode >= RGBLIGHT_MODE_SNAKE) sprintf(buf, "Snake %d", mode - RGBLIGHT_MODE_SNAKE + 1);
+    // else if (mode >= RGBLIGHT_MODE_RAINBOW_SWIRL) sprintf(buf, "Rainbow swirl %d", mode - RGBLIGHT_MODE_RAINBOW_SWIRL + 1);
+    // else if (mode >= RGBLIGHT_MODE_RAINBOW_MOOD) sprintf(buf, "Rainbow mood %d", mode - RGBLIGHT_MODE_RAINBOW_MOOD + 1);
+    // else if (mode >= RGBLIGHT_MODE_BREATHING) sprintf(buf, "Breathing %d", mode - RGBLIGHT_MODE_BREATHING + 1);
+    // else if (mode >= RGBLIGHT_MODE_STATIC_LIGHT) sprintf(buf, "Solid color");
+    sprintf(buf, "Rainbow swirl %d", mode - RGBLIGHT_MODE_RAINBOW_SWIRL + 1);
     return buf;
 }
 

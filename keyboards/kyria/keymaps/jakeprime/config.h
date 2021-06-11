@@ -21,17 +21,18 @@
 #endif
 
 #ifdef RGBLIGHT_ENABLE
-  #define RGBLIGHT_ANIMATIONS
+  #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
   #define RGBLIGHT_HUE_STEP 8
   #define RGBLIGHT_SAT_STEP 8
   #define RGBLIGHT_VAL_STEP 8
   #define RGBLIGHT_LIMIT_VAL 240
+
+  #undef RGBLED_SPLIT
+  #define RGBLED_SPLIT { 8, 8 }
+  #undef RGBLED_NUM
+  #define RGBLED_NUM 16
 #endif
 
-#undef RGBLED_SPLIT
-#define RGBLED_SPLIT { 8, 8 }
-#undef RGBLED_NUM
-#define RGBLED_NUM 16
 
 // If you are using an Elite C rev3 on the slave side, uncomment the lines below:
 #define SPLIT_USB_DETECT
