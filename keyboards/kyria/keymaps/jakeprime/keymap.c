@@ -27,6 +27,7 @@ enum layers {
 
 enum my_keycodes {
     JP_COLN = SAFE_RANGE,
+    JP_OSS,
     JP_RED,
     JP_RNBW
 };
@@ -45,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |   Z  |   X  |   C  |   V  |   B  |      |      |  |      |      |   N  |   M  | ,  < | . >  | /  ? |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |CmdEsc|Sy/Tab|Np/Del|HALMAK|  | Caps | Enter|Nv/Spc| Bspc |      |
+ *                        |      |CmdEsc| Sym/↑|Np/Tab|HALMAK|  | Caps |Md/Ent|Nv/Spc| Bspc |      |
  *                        `----------------------------------'  `----------------------------------'
  */
 
@@ -62,16 +63,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define QWRT_SC RCTL_T(KC_SCLN)
 
 #define ESC_CMD LGUI_T(KC_ESC)
+#define OSS_SYM LT(_SYMB, JP_OSS)
+#define TAB_NUM LT(_NUMS, KC_TAB)
+
+#define ENT_MED LT(_MEDIA, KC_ENT)
 #define SPC_NAV LT(_NAV, KC_SPC)
-#define TAB_SYM LT(_SYMB, KC_TAB)
-#define NUM_DEL LT(_NUMS, KC_DEL)
-#define MED_ENT LT(_MEDIA, KC_ENT)
 
     [_QWERTY] = LAYOUT(
         XXXXXXX, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    XXXXXXX,
         XXXXXXX, QWRT_A,  QWRT_S,  QWRT_D,  QWRT_F,  KC_G,                                        KC_H,    QWRT_J,  QWRT_K,  QWRT_L,  QWRT_SC, XXXXXXX,
         XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
-                                   XXXXXXX, ESC_CMD, TAB_SYM, NUM_DEL, HALMAK,  KC_CAPS, MED_ENT, SPC_NAV, KC_BSPC, XXXXXXX
+                                   XXXXXXX, ESC_CMD, OSS_SYM, TAB_NUM, HALMAK,  KC_CAPS, ENT_MED, SPC_NAV, KC_BSPC, XXXXXXX
     ),
 
 /*
@@ -132,7 +134,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX, KC_PLUS, S(KC_6), KC_LCBR, KC_RCBR, A(KC_3),                                     KC_BSLS, KC_QUOT, KC_DQUO, KC_GRV,  KC_AT,   XXXXXXX,
       XXXXXXX, H_AMPR,  H_PIPE,  H_LPRN,  H_RPRN,  KC_DLR,                                      KC_TILD, H_UNDS,  H_MINS,  H_PLUS,  H_COLN,  XXXXXXX,
       XXXXXXX, KC_PERC, KC_ASTR, KC_LBRC, KC_RBRC, S(KC_3), _______, _______, _______, _______, KC_EXLM, KC_EQL,  KC_LT,   KC_GT,   KC_QUES, XXXXXXX,
-                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, XXXXXXX
+                                 _______, _______, _______,  _______, _______, _______, _______, _______, _______, _______
     ),
 /*
  * Navigation
@@ -226,13 +228,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //     ),
 };
 
-bool process_key_tap(uint16_t keycode, keyrecord_t *record) {
+bool process_key_tap(uint16_t keycode, keyrecord_t *record, bool should_capitalize) {
+    uint16_t modded_keycode = should_capitalize ? S(keycode) : keycode;
+
     if (record->tap.count > 0) {
         // tap
         if (record->event.pressed) {
-            register_code16(keycode);
+            register_code16(modded_keycode);
         } else {
-            unregister_code16(keycode);
+            unregister_code16(modded_keycode);
         }
         return false; // disable the default action
     }
@@ -243,22 +247,53 @@ bool process_key_tap(uint16_t keycode, keyrecord_t *record) {
 static bool show_rgb_stats = false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    static bool is_oss_active = false;
+    bool should_capitalize = false;
+
+    if (record->event.pressed && is_oss_active) {
+        is_oss_active = false;
+        should_capitalize = true;
+    }
+
     switch(keycode){
         case H_AMPR:
-            return process_key_tap(KC_AMPR, record);
+            return process_key_tap(KC_AMPR, record, false);
         case H_PIPE:
-            return process_key_tap(KC_PIPE, record);
+            return process_key_tap(KC_PIPE, record, false);
         case H_LPRN:
-            return process_key_tap(KC_LPRN, record);
+            return process_key_tap(KC_LPRN, record, false);
         case H_RPRN:
-            return process_key_tap(KC_RPRN, record);
+            return process_key_tap(KC_RPRN, record, false);
 
         case H_UNDS:
-            return process_key_tap(KC_UNDS, record);
+            return process_key_tap(KC_UNDS, record, false);
         case H_PLUS:
-            return process_key_tap(KC_PLUS, record);
+            return process_key_tap(KC_PLUS, record, false);
         case H_COLN:
-            return process_key_tap(KC_COLN, record);
+            return process_key_tap(KC_COLN, record, false);
+
+        case QWRT_A:
+            return process_key_tap(KC_A, record, should_capitalize);
+        case QWRT_S:
+            return process_key_tap(KC_S, record, should_capitalize);
+        case QWRT_D:
+            return process_key_tap(KC_D, record, should_capitalize);
+        case QWRT_F:
+            return process_key_tap(KC_F, record, should_capitalize);
+
+        case QWRT_J:
+            return process_key_tap(KC_J, record, should_capitalize);
+        case QWRT_K:
+            return process_key_tap(KC_K, record, should_capitalize);
+        case QWRT_L:
+            return process_key_tap(KC_L, record, should_capitalize);
+
+        case OSS_SYM:
+            if (record->tap.count > 0) { // tap action
+                if (record->event.pressed) is_oss_active = true;
+                return false;
+            }
+            return true; // hold action
 
         case JP_RED:
             rgblight_enable();
@@ -284,6 +319,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return true;
 
         default:
+            if (should_capitalize) {
+                tap_code16(S(keycode));
+                return false;
+            }
             return true;
     }
 }
