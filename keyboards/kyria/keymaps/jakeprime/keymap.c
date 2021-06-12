@@ -140,25 +140,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Navigation
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |  *   |  7   |  8   |  9   |  +   |                              |      |  M1  |  M2  |  M3  |      |        |
+ * |        |  +   |  ^   |  {   |  }   |  #   |                              |      |  M1  |  M2  |  M3  |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |  /   |  4   |  5   |  6   |  -   |                              | Left | Down | Up   | Right|      |        |
+ * |        |  &   |  |   |  (   |  )   |  $   |                              | Left | Down | Up   | Right|      |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |      |  1   |  2   |  3   |      |      |      |  |      |      | MLeft| Mdown| MUp  |MRight|      |        |
+ * |        |  %   |  *   |  [   |  ]   |  £   |      |      |  |      |      | MLeft| Mdown| MUp  |MRight|      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |  .   |  0   |  Del |      |  |      |      |      |      |      |
+ *                        |      |      |      | Del  |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
-#define H_SLSH LCTL_T(KC_SLSH)
-#define H_4 LALT_T(KC_4)
-#define H_5 LGUI_T(KC_5)
-#define H_6 LSFT_T(KC_6)
 
     [_NAV] = LAYOUT(
-      XXXXXXX, KC_ASTR, KC_7,    KC_8,    KC_9,    KC_PLUS,                                     XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, XXXXXXX, XXXXXXX,
-      XXXXXXX, H_SLSH,  H_4,     H_5,     H_6,     KC_MINS,                                     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
-      XXXXXXX, XXXXXXX, KC_1,    KC_2,    KC_3,    XXXXXXX, _______, _______, _______, _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX, XXXXXXX,
-                                 XXXXXXX, KC_DOT,  KC_0,    KC_DEL,  _______, _______, _______, _______, _______, XXXXXXX
+      XXXXXXX, KC_PLUS, S(KC_6), KC_LCBR, KC_RCBR, A(KC_3),                                     XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, XXXXXXX, XXXXXXX,
+      XXXXXXX, H_AMPR,  H_PIPE,  H_LPRN,  H_RPRN,  KC_DLR,                                      KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
+      XXXXXXX, KC_PERC, KC_ASTR, KC_LBRC, KC_RBRC, S(KC_3), _______, _______, _______, _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX, XXXXXXX,
+                                 XXXXXXX, _______, _______, KC_DEL,  _______, _______, _______, _______, _______, XXXXXXX
     ),
 
 /*
