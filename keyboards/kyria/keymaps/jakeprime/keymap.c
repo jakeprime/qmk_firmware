@@ -18,7 +18,7 @@
 
 enum layers {
     _QWERTY = 0,
-    _HALMAK,
+    _HD,
     _SYMB,
     _NAV,
     _NUMS,
@@ -50,8 +50,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
 
-#define HALMAK TG(_HALMAK)
-
 #define QWRT_A LCTL_T(KC_A)
 #define QWRT_S LALT_T(KC_S)
 #define QWRT_D LGUI_T(KC_D)
@@ -77,33 +75,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
 /*
- * Base Layer: HALMAK
+ * Layer: Hands Down
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |   W  |   L  |   R  |   B  |   Z  |                              |   ;  |   Q  |   U  |   D  |   J  |        |
+ * |        |   Q  |   C  |   H  |   P  |   V  |                              |   K  |   Y  |   O  |   J  |   ;  |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        | S  ↑ | H  ^ | N  ⌥ | T  ⌘ |   ,  |                              |   .  | A  ⌘ | E  ⌥ | O  ^ | I  ↑ |        |
+ * |        | R  ^ | S  ⌥ | N  ⌘ | T  ↑ |   G  |                              |   W  | U  ↑ | E  ⌘ | I  ⌥ | A  ^ |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |   F  |   M  |   V  |  C   |   /  |      |      |  |      |      |   G  |   P  |   X  |   K  |   Y  |        |
+ * |        |   X  |   M  |   L  |  D   |   B  |      |      |  |      |      |   Z  |   F  |   ,  |   .  |   /  |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
 
-#define HLMK_S LSFT_T(KC_S)
-#define HLMK_H LCTL_T(KC_H)
-#define HLMK_N LALT_T(KC_N)
-#define HLMK_T LGUI_T(KC_T)
+#define HD_R LCTL_T(KC_R)
+#define HD_S LALT_T(KC_S)
+#define HD_N LGUI_T(KC_N)
+#define HD_T LSFT_T(KC_T)
 
-#define HLMK_A RGUI_T(KC_A)
-#define HLMK_E LALT_T(KC_E)
-#define HLMK_O RCTL_T(KC_O)
-#define HLMK_I RSFT_T(KC_I)
+#define HD_U RSFT_T(KC_U)
+#define HD_E RGUI_T(KC_E)
+#define HD_I LALT_T(KC_I)
+#define HD_A RCTL_T(KC_A)
 
-    [_HALMAK] = LAYOUT(
-        _______, KC_W,    KC_L,    KC_R,    KC_B,    KC_Z,                                        KC_SCLN, KC_Q,    KC_U,    KC_D,    KC_J,    _______,
-        _______, HLMK_S,  HLMK_H,  HLMK_N,  HLMK_T,  KC_COMM,                                     KC_DOT,  HLMK_A,  HLMK_E,  HLMK_O,  HLMK_I,  _______,
-        _______, KC_F,    KC_M,    KC_V,    KC_C,    KC_SLSH, _______, _______, _______, _______, KC_G,    KC_P,    KC_X,    KC_K,    KC_Y,    _______,
+    [_HD] = LAYOUT(
+        _______, KC_Q,    KC_C,    KC_H,    KC_P,    KC_V,                                        KC_K,    KC_Y,    KC_O,    KC_J,    KC_SCLN, _______,
+        _______, HD_R,    HD_S,    HD_N,    HD_T,    KC_G,                                        KC_W,    HD_U,    HD_E,    HD_I,    HD_A,    _______,
+        _______, KC_X,    KC_M,    KC_L,    KC_D,    KC_B,    _______, _______, _______, _______, KC_Z,    KC_F,    KC_COMM, KC_DOT,  KC_SLSH, _______,
                                    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
@@ -191,14 +189,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
 
+#define H_DOWN TG(_HD)
+
 #define FINE_VU LSA(KC__VOLUP)
 #define FINE_VD LSA(KC__VOLDOWN)
 #define SCR_CPY S(C(G(KC_4)))
 
     [_MEDIA] = LAYOUT(
-      _______, _______, _______, JP_RNBW, JP_RED,  _______,                                     _______, FINE_VD, FINE_VU, _______, HALMAK,  _______,
+      _______, _______, _______, JP_RNBW, JP_RED,  _______,                                     _______, FINE_VD, FINE_VU, _______, H_DOWN,  _______,
       _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, RGB_TOG, _______,
-      _______, KC_SLEP, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,_______, _______, _______, _______, _______, KC_MPLY, KC_MUTE, _______, KC_SLEP, _______,
+      _______, KC_SLEP, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,_______, _______, _______, _______, SCR_CPY, KC_MPLY, KC_MUTE, _______, KC_SLEP, _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
