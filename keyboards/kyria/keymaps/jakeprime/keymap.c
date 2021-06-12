@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |   Z  |   X  |   C  |   V  |   B  |      |      |  |      |      |   N  |   M  | ,  < | . >  | /  ? |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      | ⌘/Esc|_Sym/↑|_Num/↹|HALMAK|  | Caps |_Med/↵|_Nav/␣|   ⌫  |      |
+ *                        |      | ⌘/Esc|_Sym/↹|_Num/↑| Caps |  |   ↵  |_Med/↑|_Nav/␣|   ⌫  |      |
  *                        `----------------------------------'  `----------------------------------'
  */
 
@@ -63,17 +63,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define QWRT_SC RCTL_T(KC_SCLN)
 
 #define ESC_CMD LGUI_T(KC_ESC)
-#define OSS_SYM LT(_SYMB, JP_OSS)
-#define TAB_NUM LT(_NUMS, KC_TAB)
+#define TAB_SYM LT(_SYMB, KC_TAB)
+#define OSS_NUM LT(_NUMS, JP_OSS)
 
-#define ENT_MED LT(_MEDIA, KC_ENT)
+#define OSS_MED LT(_MEDIA, JP_OSS)
 #define SPC_NAV LT(_NAV, KC_SPC)
 
     [_QWERTY] = LAYOUT(
         XXXXXXX, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    XXXXXXX,
         XXXXXXX, QWRT_A,  QWRT_S,  QWRT_D,  QWRT_F,  KC_G,                                        KC_H,    QWRT_J,  QWRT_K,  QWRT_L,  QWRT_SC, XXXXXXX,
         XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
-                                   XXXXXXX, ESC_CMD, OSS_SYM, TAB_NUM, HALMAK,  KC_CAPS, ENT_MED, SPC_NAV, KC_BSPC, XXXXXXX
+                                   XXXXXXX, ESC_CMD, TAB_SYM, OSS_NUM, KC_CAPS, KC_ENT,  OSS_MED, SPC_NAV, KC_BSPC, XXXXXXX
     ),
 
 /*
@@ -181,7 +181,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Media
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |      |      | Rnbw |  Red |      |                              |      | VolD-| VolU-|      |      |        |
+ * |        |      |      | Rnbw |  Red |      |                              |      | VolD-| VolU-|      |Halmak|        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |        | RGB  | SAI  | HUI  | VAI  | MOD  |                              | Prev | VolD+| VolU+| Next |  RGB |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
@@ -196,7 +196,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define SCR_CPY S(C(G(KC_4)))
 
     [_MEDIA] = LAYOUT(
-      _______, _______, _______, JP_RNBW, JP_RED,  _______,                                     _______, FINE_VD, FINE_VU, _______, _______, _______,
+      _______, _______, _______, JP_RNBW, JP_RED,  _______,                                     _______, FINE_VD, FINE_VU, _______, HALMAK,  _______,
       _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, RGB_TOG, _______,
       _______, KC_SLEP, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,_______, _______, _______, _______, _______, KC_MPLY, KC_MUTE, _______, KC_SLEP, _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
@@ -284,7 +284,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case QWRT_L:
             return process_key_tap(KC_L, record, should_capitalize);
 
-        case OSS_SYM:
+        case OSS_NUM:
+        case OSS_MED:
             if (record->tap.count > 0) { // tap action
                 if (record->event.pressed) is_oss_active = true;
                 return false;
