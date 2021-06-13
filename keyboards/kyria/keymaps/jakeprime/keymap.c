@@ -78,31 +78,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Layer: Hands Down
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |   Q  |   C  |   H  |   P  |   V  |                              |   K  |   Y  |   O  |   J  |   ;  |        |
+ * |        |   V  |   G  |   M  |   F  |   "  |                              |   '  |   K  |   U  |   J  |   Q  |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        | R  ^ | S  ⌥ | N  ⌘ | T  ↑ |   G  |                              |   W  | U  ↑ | E  ⌘ | I  ⌥ | A  ^ |        |
+ * |        | R  ^ | S  ⌥ | T  ⌘ | H  ↑ |   P  |                              |   Y  | I  ↑ | E  ⌘ | O  ⌥ | A  ^ |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |   X  |   M  |   L  |  D   |   B  |      |      |  |      |      |   Z  |   F  |   ,  |   .  |   /  |        |
+ * |        |   X  |   C  |   L  |  D   |   B  |      |      |  |      |      |   Z  |   W  |   ,  |   .  |   /  |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        |      |      |   N  |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
 
 #define HD_R LCTL_T(KC_R)
 #define HD_S LALT_T(KC_S)
-#define HD_N LGUI_T(KC_N)
-#define HD_T LSFT_T(KC_T)
+#define HD_T LGUI_T(KC_T)
+#define HD_H LSFT_T(KC_H)
 
-#define HD_U RSFT_T(KC_U)
+#define HD_I RSFT_T(KC_I)
 #define HD_E RGUI_T(KC_E)
-#define HD_I LALT_T(KC_I)
+#define HD_O LALT_T(KC_O)
 #define HD_A RCTL_T(KC_A)
 
     [_HD] = LAYOUT(
-        _______, KC_Q,    KC_C,    KC_H,    KC_P,    KC_V,                                        KC_K,    KC_Y,    KC_O,    KC_J,    KC_SCLN, _______,
-        _______, HD_R,    HD_S,    HD_N,    HD_T,    KC_G,                                        KC_W,    HD_U,    HD_E,    HD_I,    HD_A,    _______,
-        _______, KC_X,    KC_M,    KC_L,    KC_D,    KC_B,    _______, _______, _______, _______, KC_Z,    KC_F,    KC_COMM, KC_DOT,  KC_SLSH, _______,
-                                   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+        _______, KC_V,    KC_G,    KC_M,    KC_F,    KC_DQUO,                                     KC_QUOT, KC_K,    KC_U,    KC_J,    KC_Q,    _______,
+        _______, HD_R,    HD_S,    HD_T,    HD_H,    KC_P,                                        KC_Y,    HD_I,    HD_E,    HD_O,    HD_A,    _______,
+        _______, KC_X,    KC_C,    KC_L,    KC_D,    KC_B,    _______, _______, _______, _______, KC_Z,    KC_W,    KC_COMM, KC_DOT,  KC_SLSH, _______,
+                                   _______, _______, KC_N,    _______, _______, _______, _______, _______, _______, _______
     ),
 
 /*
