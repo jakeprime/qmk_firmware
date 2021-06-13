@@ -324,6 +324,42 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
+int saved_rgb_mode;
+int saved_rgb_hue;
+int saved_rgb_sat;
+int saved_rgb_val;
+void save_rgb_state(void) {
+   saved_rgb_mode = rgblight_get_mode();
+   saved_rgb_hue = rgblight_get_hue();
+   saved_rgb_sat = rgblight_get_sat();
+   saved_rgb_val = rgblight_get_val();
+}
+
+void restore_rgb_state(void) {
+    rgblight_mode(saved_rgb_mode);
+    rgblight_sethsv(saved_rgb_hue, saved_rgb_sat, saved_rgb_val);
+    rgblight_mode(saved_rgb_mode);
+}
+
+void post_process_record_kb(uint16_t keycode, keyrecord_t *record) {
+    static bool prev_state = false;
+
+    uint8_t led_usb_state = host_keyboard_leds();
+    bool this_state = IS_LED_ON(led_usb_state, USB_LED_CAPS_LOCK) ? true : false;
+    bool has_changed = prev_state != this_state;
+
+    if (has_changed) {
+        if (this_state) {
+            save_rgb_state();
+            rgblight_mode(RGBLIGHT_MODE_BREATHING + 3);
+            rgblight_sethsv(0, 255, 255);
+        } else {
+            restore_rgb_state();
+        }
+        prev_state = this_state;
+    }
+}
+
 #ifdef OLED_DRIVER_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 	return OLED_ROTATION_180;
@@ -409,11 +445,10 @@ static char *readable_rgb_mode(void) {
     // else if (mode >= RGBLIGHT_MODE_CHRISTMAS) sprintf(buf, "Christmas");
     // else if (mode >= RGBLIGHT_MODE_KNIGHT) sprintf(buf, "Knight %d", mode - RGBLIGHT_MODE_KNIGHT + 1);
     // else if (mode >= RGBLIGHT_MODE_SNAKE) sprintf(buf, "Snake %d", mode - RGBLIGHT_MODE_SNAKE + 1);
-    // else if (mode >= RGBLIGHT_MODE_RAINBOW_SWIRL) sprintf(buf, "Rainbow swirl %d", mode - RGBLIGHT_MODE_RAINBOW_SWIRL + 1);
+    if (mode >= RGBLIGHT_MODE_RAINBOW_SWIRL) sprintf(buf, "Rainbow swirl %d", mode - RGBLIGHT_MODE_RAINBOW_SWIRL + 1);
     // else if (mode >= RGBLIGHT_MODE_RAINBOW_MOOD) sprintf(buf, "Rainbow mood %d", mode - RGBLIGHT_MODE_RAINBOW_MOOD + 1);
-    // else if (mode >= RGBLIGHT_MODE_BREATHING) sprintf(buf, "Breathing %d", mode - RGBLIGHT_MODE_BREATHING + 1);
-    // else if (mode >= RGBLIGHT_MODE_STATIC_LIGHT) sprintf(buf, "Solid color");
-    sprintf(buf, "Rainbow swirl %d", mode - RGBLIGHT_MODE_RAINBOW_SWIRL + 1);
+    else if (mode >= RGBLIGHT_MODE_BREATHING) sprintf(buf, "Breathing %d", mode - RGBLIGHT_MODE_BREATHING + 1);
+    else if (mode >= RGBLIGHT_MODE_STATIC_LIGHT) sprintf(buf, "Solid color");
     return buf;
 }
 
