@@ -50,3 +50,7 @@
 #define TAPPING_TERM 175
 
 #define ENCODER_RESOLUTION 2
+
+// #define SATANIC
+#define FUTURELEARN
+// #define JP_MASTER
