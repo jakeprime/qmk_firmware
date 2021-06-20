@@ -32,6 +32,7 @@
   #define RGBLED_SPLIT { 8, 8 }
   #undef RGBLED_NUM
   #define RGBLED_NUM 16
+  #define RGBLIGHT_LED_MAP { 7, 6, 5, 4, 3, 2, 1, 0, 8, 9, 10, 11, 12, 13, 14, 15 }
 #endif
 
 
