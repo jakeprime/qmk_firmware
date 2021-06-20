@@ -28,6 +28,7 @@ enum layers {
 enum my_keycodes {
     JP_COLN = SAFE_RANGE,
     JP_OSS,
+    JP_PINK,
     JP_RED,
     JP_RNBW
 };
@@ -179,7 +180,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Media
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |      |      | Rnbw |  Red |      |                              |      | VolD-| VolU-|      |Halmak|        |
+ * |        |      | Pink | Rnbw |  Red |      |                              |      | VolD-| VolU-|      |Halmak|        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |        | RGB  | SAI  | HUI  | VAI  | MOD  |                              | Prev | VolD+| VolU+| Next |  RGB |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
@@ -196,7 +197,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define SCR_CPY S(C(G(KC_4)))
 
     [_MEDIA] = LAYOUT(
-      _______, _______, _______, JP_RNBW, JP_RED,  _______,                                     _______, FINE_VD, FINE_VU, _______, H_DOWN,  _______,
+      _______, _______, JP_PINK, JP_RNBW, JP_RED,  _______,                                     _______, FINE_VD, FINE_VU, _______, H_DOWN,  _______,
       _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, RGB_TOG, _______,
       _______, KC_SLEP, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,_______, _______, _______, _______, SCR_CPY, KC_MPLY, KC_MUTE, _______, KC_SLEP, _______,
                                  _______, _______, _______, KC_CAPS, _______, _______, _______, _______, _______, _______
@@ -292,6 +293,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return true; // hold action
 
+        case JP_PINK:
+            rgblight_enable();
+            rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
+            rgblight_sethsv(240, 255, 255);
+            show_rgb_stats_timer = timer_read();
+            show_rgb_stats = true;
+            return true;
         case JP_RED:
             rgblight_enable();
             rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
