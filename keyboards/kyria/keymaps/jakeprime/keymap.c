@@ -682,7 +682,7 @@ void oled_task_user(void) {
 #endif
 
 #ifdef ENCODER_ENABLE
-void encoder_update_user(uint8_t index, bool clockwise) {
+bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
 #ifdef JP_LIGHT_SIDE
         if (clockwise) tap_code16(FINE_VU);
@@ -701,5 +701,6 @@ void encoder_update_user(uint8_t index, bool clockwise) {
             tap_code(KC_MS_WH_UP);
         }
     }
+    return false;
 }
 #endif
