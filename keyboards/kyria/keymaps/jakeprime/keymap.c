@@ -225,6 +225,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //     ),
 };
 
+static bool show_rgb_stats = false;
+
+void show_fl_spectrum(void) {
+    rgblight_enable();
+    rgblight_mode(RGBLIGHT_MODE_STATIC_GRADIENT + 7);
+    rgblight_sethsv(0, 255, 255);
+    show_rgb_stats_timer = timer_read();
+    show_rgb_stats = true;
+}
+
 bool process_key_tap(uint16_t keycode, keyrecord_t *record, bool should_capitalize) {
     uint16_t modded_keycode = should_capitalize ? S(keycode) : keycode;
 
@@ -241,7 +251,6 @@ bool process_key_tap(uint16_t keycode, keyrecord_t *record, bool should_capitali
     return true;
 }
 
-static bool show_rgb_stats = false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static bool is_oss_active = false;
@@ -294,11 +303,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return true; // hold action
 
         case JP_PINK:
-            rgblight_enable();
-            rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
-            rgblight_sethsv(240, 255, 255);
-            show_rgb_stats_timer = timer_read();
-            show_rgb_stats = true;
+            show_fl_spectrum();
             return true;
         case JP_RED:
             rgblight_enable();
@@ -527,11 +532,11 @@ static char *readable_rgb_mode(void) {
     // if (mode >= RGBLIGHT_MODE_TWINKLE) sprintf(buf, "Twinkle %d", mode - RGBLIGHT_MODE_TWINKLE + 1);
     // else if (mode >= RGBLIGHT_MODE_ALTERNATING) sprintf(buf, "Alternating");
     // else if (mode >= RGBLIGHT_MODE_RGB_TEST) sprintf(buf, "RGB Test");
-    // else if (mode >= RGBLIGHT_MODE_STATIC_GRADIENT) sprintf(buf, "Gradient %d", mode - RGBLIGHT_MODE_STATIC_GRADIENT + 1);
+    if (mode >= RGBLIGHT_MODE_STATIC_GRADIENT) sprintf(buf, "Gradient %d", mode - RGBLIGHT_MODE_STATIC_GRADIENT + 1);
     // else if (mode >= RGBLIGHT_MODE_CHRISTMAS) sprintf(buf, "Christmas");
     // else if (mode >= RGBLIGHT_MODE_KNIGHT) sprintf(buf, "Knight %d", mode - RGBLIGHT_MODE_KNIGHT + 1);
     // else if (mode >= RGBLIGHT_MODE_SNAKE) sprintf(buf, "Snake %d", mode - RGBLIGHT_MODE_SNAKE + 1);
-    if (mode >= RGBLIGHT_MODE_RAINBOW_SWIRL) sprintf(buf, "Rainbow swirl %d", mode - RGBLIGHT_MODE_RAINBOW_SWIRL + 1);
+    else if (mode >= RGBLIGHT_MODE_RAINBOW_SWIRL) sprintf(buf, "Rainbow swirl %d", mode - RGBLIGHT_MODE_RAINBOW_SWIRL + 1);
     // else if (mode >= RGBLIGHT_MODE_RAINBOW_MOOD) sprintf(buf, "Rainbow mood %d", mode - RGBLIGHT_MODE_RAINBOW_MOOD + 1);
     else if (mode >= RGBLIGHT_MODE_BREATHING) sprintf(buf, "Breathing %d", mode - RGBLIGHT_MODE_BREATHING + 1);
     else if (mode >= RGBLIGHT_MODE_STATIC_LIGHT) sprintf(buf, "Solid color");
