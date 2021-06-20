@@ -50,6 +50,8 @@
 
 #define TAPPING_TERM 175
 
+#define NO_ACTION_ONESHOT
+
 
 // #define SATANIC
 #define FUTURELEARN
