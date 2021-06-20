@@ -49,8 +49,15 @@
 
 #define TAPPING_TERM 175
 
-#define ENCODER_RESOLUTION 2
 
 // #define SATANIC
 #define FUTURELEARN
 #define JP_MASTER
+
+#define JP_LIGHT_SIDE
+
+#ifdef JP_LIGHT_SIDE
+  #define ENCODER_RESOLUTION 4
+#else
+  #define ENCODER_RESOLUTION 2
+#endif
