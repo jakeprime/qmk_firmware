@@ -676,11 +676,13 @@ void oled_task_user(void) {
 #ifdef ENCODER_ENABLE
 void encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
-        if (clockwise) {
-            tap_code16(FINE_VD);
-        } else {
-            tap_code16(FINE_VU);
-        }
+#ifdef JP_LIGHT_SIDE
+        if (clockwise) tap_code16(FINE_VU);
+        else tap_code16(FINE_VD);
+#else
+        if (clockwise) tap_code16(FINE_VD);
+        else tap_code16(FINE_VU);
+#endif
     }
     else if (index == 1) {
         if (clockwise) {
