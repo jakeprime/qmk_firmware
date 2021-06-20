@@ -53,4 +53,4 @@
 
 // #define SATANIC
 #define FUTURELEARN
-// #define JP_MASTER
+#define JP_MASTER
