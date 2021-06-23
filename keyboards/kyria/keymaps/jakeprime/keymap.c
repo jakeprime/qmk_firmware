@@ -424,6 +424,24 @@ static void render_rgb_stats(void) {
 #endif
 }
 
+static void render_status(void) {
+    oled_set_cursor(0, 7);
+    switch (get_highest_layer(layer_state)) {
+        case _QWERTY:
+            oled_write_P(PSTR("Qwerty    "), false);
+            break;
+        case _HD:
+            oled_write_P(PSTR("Hands Down"), false);
+            break;
+    }
+    oled_set_cursor(17, 7);
+
+    // Host Keyboard LED Status
+    uint8_t led_usb_state = host_keyboard_leds();
+    oled_write_P(IS_LED_ON(led_usb_state, USB_LED_CAPS_LOCK)   ? PSTR("Caps") : PSTR("    "), false);
+}
+
+
 void oled_task_user(void) {
     if (timer_elapsed(show_rgb_stats_timer) > 3000) show_rgb_stats = false;
 
@@ -431,6 +449,7 @@ void oled_task_user(void) {
         render_rgb_stats();
     } else {
         render_logo();
+        if (is_keyboard_master()) render_status();
     }
 }
 #endif
