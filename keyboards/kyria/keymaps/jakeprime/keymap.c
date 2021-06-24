@@ -35,6 +35,8 @@ enum my_keycodes {
 
 uint16_t show_rgb_stats_timer;
 
+void indicate_caps(bool force, bool enabled);
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /*
@@ -251,6 +253,10 @@ bool process_key_tap(uint16_t keycode, keyrecord_t *record, bool should_capitali
     return true;
 }
 
+bool is_caps(void) {
+    uint8_t led_usb_state = host_keyboard_leds();
+    return IS_LED_ON(led_usb_state, USB_LED_CAPS_LOCK) ? true : false;
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static bool is_oss_active = false;
@@ -297,7 +303,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case OSS_NUM:
         case OSS_MED:
             if (record->tap.count > 0) { // tap action
-                if (record->event.pressed) is_oss_active = true;
+                if (record->event.pressed) {
+                    if (is_caps()) {
+                        tap_code(KC_CAPS);
+                        indicate_caps(true, false);
+                    } else if (should_capitalize) {
+                        tap_code(KC_CAPS);
+                        indicate_caps(true, true);
+                    } else {
+                        is_oss_active = true;
+                    }
+                }
                 return false;
             }
             return true; // hold action
@@ -354,11 +370,10 @@ void restore_rgb_state(void) {
     rgblight_mode(saved_rgb_mode);
 }
 
-void post_process_record_kb(uint16_t keycode, keyrecord_t *record) {
+void indicate_caps(bool force, bool enabled) {
     static bool prev_state = false;
 
-    uint8_t led_usb_state = host_keyboard_leds();
-    bool this_state = IS_LED_ON(led_usb_state, USB_LED_CAPS_LOCK) ? true : false;
+    bool this_state = force ? enabled : is_caps();
     bool has_changed = prev_state != this_state;
 
     if (has_changed) {
@@ -371,6 +386,10 @@ void post_process_record_kb(uint16_t keycode, keyrecord_t *record) {
         }
         prev_state = this_state;
     }
+}
+
+void post_process_record_kb(uint16_t keycode, keyrecord_t *record) {
+    indicate_caps(false, false);
 }
 
 #ifdef OLED_DRIVER_ENABLE
