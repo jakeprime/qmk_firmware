@@ -485,13 +485,13 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 #endif
     }
     else if (index == 1) {
-        if (clockwise) {
-            tap_code(KC_MS_WH_DOWN);
-            tap_code(KC_MS_WH_DOWN);
-        } else {
-            tap_code(KC_MS_WH_UP);
-            tap_code(KC_MS_WH_UP);
-        }
+#ifdef JP_LIGHT_SIDE
+        if (clockwise) tap_code16(G(KC_PLUS));
+        else tap_code16(G(KC_MINS));
+#else
+        if (clockwise) tap_code16(G(KC_MINS));
+        else tap_code16(G(KC_PLUS));
+#endif
     }
     return false;
 }
