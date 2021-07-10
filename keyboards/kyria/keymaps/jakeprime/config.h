@@ -54,10 +54,10 @@
 #define NO_ACTION_ONESHOT
 
 
-// #define SATANIC
+#define SATANIC
 // #define FUTURELEARN
-# define VAPORWAVE
-// #define JP_MASTER
+// # define VAPORWAVE
+#define JP_MASTER
 
 // #define JP_LIGHT_SIDE
 
