@@ -53,6 +53,8 @@
 
 #define NO_ACTION_ONESHOT
 
+#define COMBO_COUNT 2
+
 
 // #define SATANIC
 #define FUTURELEARN
