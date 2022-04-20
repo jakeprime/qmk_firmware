@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |   Z  |   X  |   C  |   V  |   B  |      |      |  |      |      |   N  |   M  | ,  < | . >  | /  ? |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      | ⌘/Esc|_Sym/↹|_Num/↑| Caps |  |   ↵  |_Med/↑|_Nav/␣|   ⌫  |      |
+ *                        |      | ⌘/Esc|_Sym/↹| _Num | Caps |  |   ↵  | _Med |_Nav/␣|   ⌫  |      |
  *                        `----------------------------------'  `----------------------------------'
  */
 
@@ -65,16 +65,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #define ESC_CMD LGUI_T(KC_ESC)
 #define TAB_SYM LT(_SYMB, KC_TAB)
-#define OSS_NUM LT(_NUMS, JP_OSS)
+#define NUMS MO(_NUMS)
 
-#define OSS_MED LT(_MEDIA, JP_OSS)
+#define MEDIA MO(_MEDIA)
 #define SPC_NAV LT(_NAV, KC_SPC)
 
     [_QWERTY] = LAYOUT(
         XXXXXXX, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    XXXXXXX,
         XXXXXXX, QWRT_A,  QWRT_S,  QWRT_D,  QWRT_F,  KC_G,                                        KC_H,    QWRT_J,  QWRT_K,  QWRT_L,  QWRT_SC, XXXXXXX,
         XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
-                                   XXXXXXX, ESC_CMD, TAB_SYM, OSS_NUM, KC_CAPS, KC_ENT,  OSS_MED, SPC_NAV, KC_BSPC, XXXXXXX
+                                   XXXXXXX, ESC_CMD, TAB_SYM, NUMS   , KC_CAPS, KC_ENT,  MEDIA  , SPC_NAV, KC_BSPC, XXXXXXX
     ),
 
 /*
@@ -300,23 +300,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case QWRT_L:
             return process_key_tap(KC_L, record, should_capitalize);
 
-        case OSS_NUM:
-        case OSS_MED:
-            if (record->tap.count > 0) { // tap action
-                if (record->event.pressed) {
-                    if (is_caps()) {
-                        tap_code(KC_CAPS);
-                        indicate_caps(true, false);
-                    } else if (should_capitalize) {
-                        tap_code(KC_CAPS);
-                        indicate_caps(true, true);
-                    } else {
-                        is_oss_active = true;
-                    }
-                }
-                return false;
-            }
-            return true; // hold action
+        // case OSS_NUM:
+        // case OSS_MED:
+        //     if (record->tap.count > 0) { // tap action
+        //         if (record->event.pressed) {
+        //             if (is_caps()) {
+        //                 tap_code(KC_CAPS);
+        //                 indicate_caps(true, false);
+        //             } else if (should_capitalize) {
+        //                 tap_code(KC_CAPS);
+        //                 indicate_caps(true, true);
+        //             } else {
+        //                 is_oss_active = true;
+        //             }
+        //         }
+        //         return false;
+        //     }
+        //     return true; // hold action
 
         case JP_PINK:
             show_fl_spectrum();
