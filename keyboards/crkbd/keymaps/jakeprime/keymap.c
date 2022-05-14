@@ -29,7 +29,6 @@ enum layers {
 
 enum my_keycodes {
     JP_COLN = SAFE_RANGE,
-    JP_OSS,
     JP_PINK,
     JP_RED,
     JP_RNBW
@@ -135,6 +134,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return process_key_tap(KC_PLUS, record);
         case H_COLN:
             return process_key_tap(KC_COLN, record);
+
+        case JP_PINK:
+            rgblight_enable();
+            rgblight_mode(RGBLIGHT_MODE_STATIC_GRADIENT + 7);
+            rgblight_sethsv(248, 255, 255);
+            return true;
+        case JP_RED:
+            rgblight_enable();
+            rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
+            rgblight_sethsv(0, 255, 255);
+            return true;
+        case JP_RNBW:
+            rgblight_enable();
+            rgblight_mode(RGBLIGHT_MODE_RAINBOW_SWIRL + 4);
+            return true;
         default:
             return true;
     }
