@@ -31,7 +31,8 @@ enum my_keycodes {
     JP_COLN = SAFE_RANGE,
     JP_PINK,
     JP_RED,
-    JP_RNBW
+    JP_RNBW,
+    JP_HTMP,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -96,9 +97,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define SCR_CPY S(C(G(KC_4)))
 
   [_MEDIA] = LAYOUT_split_3x6_3(
-    _______, _______, JP_PINK, JP_RNBW, JP_RED,  _______,                   _______, FINE_VD, FINE_VU, _______, _______, _______,
-    _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                   KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, RGB_TOG, _______,
-    _______, KC_SLEP, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,                  SCR_CPY, KC_MPLY, KC_MUTE, _______, KC_SLEP, _______,
+    _______, _______, JP_PINK, JP_RNBW, JP_HTMP, _______,                   _______, FINE_VD, FINE_VU, _______, _______, _______,
+    _______, RGB_SPI,  RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                   KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, RGB_TOG, _______,
+    _______, RGB_SPD,  RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,                  SCR_CPY, KC_MPLY, KC_MUTE, _______, KC_SLEP, _______,
                                         _______, _______, KC_CAPS, _______, _______, _______
   ),
 };
@@ -117,7 +118,14 @@ bool process_key_tap(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
+void set_keylog(uint16_t keycode, keyrecord_t *record);
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+#ifdef OLED_DRIVER_ENABLE
+    if (record->event.pressed) {
+      set_keylog(keycode, record);
+    }
+#endif // OLED_DRIVER_ENABLE
     switch(keycode){
         case H_AMPR:
             return process_key_tap(KC_AMPR, record);
@@ -134,6 +142,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return process_key_tap(KC_PLUS, record);
         case H_COLN:
             return process_key_tap(KC_COLN, record);
+
+        case JP_RNBW:
+            rgb_matrix_enable();
+            rgb_matrix_mode(RGB_MATRIX_CYCLE_LEFT_RIGHT);
+            rgb_matrix_set_speed(20);
+            return true;
+        case JP_HTMP:
+            rgb_matrix_enable();
+            rgb_matrix_mode(RGB_MATRIX_TYPING_HEATMAP);
+            return true;
+        case JP_PINK:
+            rgb_matrix_enable();
+            rgb_matrix_mode(RGB_MATRIX_GRADIENT_LEFT_RIGHT);
+            rgb_matrix_sethsv(160, 255, 255);
+            rgb_matrix_set_speed(50);
+            return true;
 
 #ifdef RGBLIGHT_ENABLE
         case JP_PINK:
