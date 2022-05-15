@@ -135,6 +135,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case H_COLN:
             return process_key_tap(KC_COLN, record);
 
+#ifdef RGBLIGHT_ENABLE
         case JP_PINK:
             rgblight_enable();
             rgblight_mode(RGBLIGHT_MODE_STATIC_GRADIENT + 7);
@@ -149,6 +150,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             rgblight_enable();
             rgblight_mode(RGBLIGHT_MODE_RAINBOW_SWIRL + 4);
             return true;
+#endif // RGBLIGHT_ENABLE
         default:
             return true;
     }
