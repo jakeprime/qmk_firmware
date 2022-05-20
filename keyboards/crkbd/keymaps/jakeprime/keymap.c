@@ -151,7 +151,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return true;
         case JP_HTMP:
             rgb_matrix_enable();
-            rgb_matrix_mode(RGB_MATRIX_TYPING_HEATMAP);
+            rgb_matrix_mode(RGB_MATRIX_CUSTOM_jake_heatmap);
             return true;
         case JP_PINK:
             rgb_matrix_enable();
