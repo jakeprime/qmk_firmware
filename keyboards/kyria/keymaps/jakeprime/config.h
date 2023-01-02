@@ -56,12 +56,12 @@
 #define COMBO_COUNT 2
 
 
-#define SATANIC
-// #define FUTURELEARN
+// #define SATANIC
+#define CLEO
 // # define VAPORWAVE
-#define JP_MASTER
+// #define JP_MASTER
 
-// #define JP_LIGHT_SIDE
+#define JP_LIGHT_SIDE
 
 #ifdef JP_LIGHT_SIDE
   #define ENCODER_RESOLUTION 4
