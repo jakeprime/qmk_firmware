@@ -229,10 +229,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 static bool show_rgb_stats = false;
 
-void show_fl_spectrum(void) {
+void show_cleo_spectrum(void) {
     rgblight_enable();
-    rgblight_mode(RGBLIGHT_MODE_STATIC_GRADIENT + 7);
-    rgblight_sethsv(248, 255, 255);
+    rgblight_mode(RGBLIGHT_MODE_STATIC_GRADIENT + 9);
+    rgblight_sethsv(176, 255, 255);
     show_rgb_stats_timer = timer_read();
     show_rgb_stats = true;
 }
@@ -319,7 +319,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         //     return true; // hold action
 
         case JP_PINK:
-            show_fl_spectrum();
+            show_cleo_spectrum();
             return true;
         case JP_RED:
             rgblight_enable();
