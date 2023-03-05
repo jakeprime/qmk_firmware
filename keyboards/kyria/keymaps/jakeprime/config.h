@@ -16,6 +16,20 @@
 
 #pragma once
 
+
+// #define SATANIC
+#define CLEO
+// # define VAPORWAVE
+// #define JP_MASTER
+
+#define JP_LIGHT_SIDE
+
+#ifdef JP_LIGHT_SIDE
+  #define ENCODER_RESOLUTION 4
+#else
+  #define ENCODER_RESOLUTION 2
+#endif
+
 #ifdef OLED_DRIVER_ENABLE
   #define OLED_DISPLAY_128X64
 #endif
@@ -27,7 +41,11 @@
   #define RGBLIGHT_HUE_STEP 8
   #define RGBLIGHT_SAT_STEP 8
   #define RGBLIGHT_VAL_STEP 8
-  #define RGBLIGHT_LIMIT_VAL 240
+  #ifdef JP_LIGHT_SIDE
+    #define RGBLIGHT_LIMIT_VAL 240
+  #else
+    #define RGBLIGHT_LIMIT_VAL 255
+  #endif
 
   #undef RGBLED_SPLIT
   #define RGBLED_SPLIT { 8, 8 }
@@ -54,17 +72,3 @@
 #define NO_ACTION_ONESHOT
 
 #define COMBO_COUNT 2
-
-
-// #define SATANIC
-#define CLEO
-// # define VAPORWAVE
-// #define JP_MASTER
-
-#define JP_LIGHT_SIDE
-
-#ifdef JP_LIGHT_SIDE
-  #define ENCODER_RESOLUTION 4
-#else
-  #define ENCODER_RESOLUTION 2
-#endif
