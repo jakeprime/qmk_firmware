@@ -58,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    XXXXXXX,
       XXXXXXX, QWRT_A,  QWRT_S,  QWRT_D,  QWRT_F,  KC_G,                      KC_H,    QWRT_J,  QWRT_K,  QWRT_L,  QWRT_SC, XXXXXXX,
       XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                      KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
-                                          ESC_CMD, TAB_SYM, CAP_NUM, ENT_MED, SPC_NAV, KC_BSPC
+                                          ESC_CMD, TAB_SYM, CAP_NUM, ENT_MED, SPC_NAV, XXXXXXX
   ),
 
 #define H_AMPR LCTL_T(KC_AMPR)
@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     XXXXXXX, KC_PLUS, S(KC_6), KC_LCBR, KC_RCBR, A(KC_3),                   KC_BSLS, KC_QUOT, KC_DQUO, KC_GRV,  KC_AT,   XXXXXXX,
     XXXXXXX, H_AMPR,  H_PIPE,  H_LPRN,  H_RPRN,  KC_DLR,                    KC_TILD, H_UNDS,  H_MINS,  H_PLUS,  H_COLN,  XXXXXXX,
     XXXXXXX, KC_PERC, KC_ASTR, KC_LBRC, KC_RBRC, S(KC_3),                   KC_EXLM, KC_EQL,  KC_LT,   KC_GT,   KC_QUES, XXXXXXX,
-                                        _______, _______, _______, _______, _______, _______
+                                        _______, _______, _______, _______, KC_BSPC, _______
   ),
 
   [_NAV] = LAYOUT_split_3x6_3(
@@ -89,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______,                   _______, KC_7,    KC_8,    KC_9,    _______, _______,
     _______, _______, _______, _______, _______, _______,                   KC_PLUS, KC_4,    KC_5,    KC_6,    KC_ASTR, _______,
     _______, _______, _______, _______, _______, _______,                   KC_MINS, KC_1,    KC_2,    KC_3,    KC_SLSH, _______,
-                                        _______, _______, _______, _______, KC_0,    _______
+                                        _______, _______, _______, KC_DOT,  KC_0,    _______
   ),
 
 #define FINE_VU LSA(KC__VOLUP)

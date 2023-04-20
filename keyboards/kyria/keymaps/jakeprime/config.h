@@ -20,7 +20,7 @@
 // #define SATANIC
 #define CLEO
 // # define VAPORWAVE
-// #define JP_MASTER
+#define JP_MASTER
 
 #define JP_LIGHT_SIDE
 
