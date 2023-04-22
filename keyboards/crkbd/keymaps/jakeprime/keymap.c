@@ -70,16 +70,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define H_MINS RGUI_T(KC_MINS)
 #define H_PLUS LALT_T(KC_PLUS)
 #define H_COLN RCTL_T(JP_COLN)
+#define JP_HASH RALT(KC_3)
 
   [_SYMB] = LAYOUT_split_3x6_3(
-    XXXXXXX, KC_PLUS, S(KC_6), KC_LCBR, KC_RCBR, A(KC_3),                   KC_BSLS, KC_QUOT, KC_DQUO, KC_GRV,  KC_AT,   XXXXXXX,
+    XXXXXXX, KC_PLUS, S(KC_6), KC_LCBR, KC_RCBR, JP_HASH,                   KC_BSLS, KC_QUOT, KC_DQUO, KC_GRV,  KC_AT,   XXXXXXX,
     XXXXXXX, H_AMPR,  H_PIPE,  H_LPRN,  H_RPRN,  KC_DLR,                    KC_TILD, H_UNDS,  H_MINS,  H_PLUS,  H_COLN,  XXXXXXX,
     XXXXXXX, KC_PERC, KC_ASTR, KC_LBRC, KC_RBRC, S(KC_3),                   KC_EXLM, KC_EQL,  KC_LT,   KC_GT,   KC_QUES, XXXXXXX,
                                         _______, _______, _______, _______, KC_BSPC, _______
   ),
 
   [_NAV] = LAYOUT_split_3x6_3(
-    XXXXXXX, KC_PLUS, S(KC_6), KC_LCBR, KC_RCBR, A(KC_3),                   XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, XXXXXXX, XXXXXXX,
+    XXXXXXX, KC_PLUS, S(KC_6), KC_LCBR, KC_RCBR, JP_HASH,                   XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, XXXXXXX, XXXXXXX,
     XXXXXXX, H_AMPR,  H_PIPE,  H_LPRN,  H_RPRN,  KC_DLR,                    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
     XXXXXXX, KC_PERC, KC_ASTR, KC_LBRC, KC_RBRC, S(KC_3),                   KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX, XXXXXXX,
                                         _______, KC_TAB,  KC_DEL,  _______, _______, _______
