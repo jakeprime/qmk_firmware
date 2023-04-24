@@ -1,4 +1,5 @@
 #include "jakeprime.h"
+#include "leds.h"
 
 bool process_key_tap(uint16_t keycode, keyrecord_t *record) {
     if (record->tap.count > 0) {
@@ -29,6 +30,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return process_key_tap(KC_PLUS, record);
     case H_COLN:
       return process_key_tap(KC_COLN, record);
+
+    case JP_BLUE:
+      show_cleo_lights();
+      return true;
+    case JP_RED:
+      show_red_lights();
+      return true;
+    case JP_RNBW:
+      show_rainbow_lights();
+      return true;
 
     default:
       return true;
