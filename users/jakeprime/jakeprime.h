@@ -4,6 +4,7 @@
 // #define USERSPACE
 
 #define XX KC_NO
+#define OO _______
 
 enum layers {
     _QWERTY = 0,
@@ -32,6 +33,7 @@ enum my_keycodes {
 
 #define TAB_SYM LT(_SYMB, KC_TAB)
 #define CAP_NUM LT(_NUMS, KC_CAPS)
+#define ESC_CMD LGUI_T(KC_ESC)
 
 #define ENT_MED LT(_MEDIA, KC_ENT)
 #define SPC_NAV LT(_NAV, KC_SPC)
@@ -159,27 +161,27 @@ enum my_keycodes {
 #define DEF_3_KYRIA XX, DEF_L_3, DEF_R_3, XX
 #define DEF_2_KYRIA XX, DEF_L_2, DEF_R_2, XX
 #define DEF_1_KYRIA XX, DEF_L_1, XX, XX, XX, XX, DEF_R_1, XX
-#define DEF_0_KYRIA XX, XX, DEF_L_0, XX, XX, DEF_R_0, XX, XX
+#define DEF_0_KYRIA XX, ESC_CMD, DEF_L_0, XX, XX, DEF_R_0, KC_BSPC, XX
 
 #define SYM_3_KYRIA XX, SYM_L_3, SYM_R_3, XX
 #define SYM_2_KYRIA XX, SYM_L_2, SYM_R_2, XX
 #define SYM_1_KYRIA XX, SYM_L_1, XX, XX, XX, XX, SYM_R_1, XX
-#define SYM_0_KYRIA XX, XX, SYM_L_0, XX, XX, SYM_R_0, XX, XX
+#define SYM_0_KYRIA XX, OO, SYM_L_0, XX, XX, SYM_R_0, OO, XX
 
 #define NAV_3_KYRIA XX, NAV_L_3, NAV_R_3, XX
 #define NAV_2_KYRIA XX, NAV_L_2, NAV_R_2, XX
 #define NAV_1_KYRIA XX, NAV_L_1, XX, XX, XX, XX, NAV_R_1, XX
-#define NAV_0_KYRIA XX, XX, NAV_L_0, XX, XX, NAV_R_0, XX, XX
+#define NAV_0_KYRIA XX, OO, NAV_L_0, XX, XX, NAV_R_0, OO, XX
 
 #define NUM_3_KYRIA XX, NUM_L_3, NUM_R_3, XX
 #define NUM_2_KYRIA XX, NUM_L_2, NUM_R_2, XX
 #define NUM_1_KYRIA XX, NUM_L_1, XX, XX, XX, XX, NUM_R_1, XX
-#define NUM_0_KYRIA XX, XX, NUM_L_0, XX, XX, NUM_R_0, XX, XX
+#define NUM_0_KYRIA XX, OO, NUM_L_0, XX, XX, NUM_R_0, OO, XX
 
 #define MED_3_KYRIA XX, MED_L_3, MED_R_3, XX
 #define MED_2_KYRIA XX, MED_L_2, MED_R_2, XX
 #define MED_1_KYRIA XX, MED_L_1, XX, XX, XX, XX, MED_R_1, XX
-#define MED_0_KYRIA XX, XX, MED_L_0, XX, XX, MED_R_0, XX, XX
+#define MED_0_KYRIA XX, OO, MED_L_0, XX, XX, MED_R_0, OO, XX
 
 #define DEF_KYRIA DEF_3_KYRIA, DEF_2_KYRIA, DEF_1_KYRIA, DEF_0_KYRIA
 #define SYM_KYRIA SYM_3_KYRIA, SYM_2_KYRIA, SYM_1_KYRIA, SYM_0_KYRIA
