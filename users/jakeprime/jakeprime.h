@@ -63,6 +63,7 @@ enum my_keycodes {
 //              ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤
 #define DEF_L_0                                            TAB_SYM,      CAP_NUM
 //                                                        ╰-------------┴-------------╯
+#define DEF_L_0_3                            ESC_CMD,                DEF_L_0
 
 //              ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
 #define DEF_R_3  KC_Y,         KC_U,         KC_I,         KC_O,         KC_P
@@ -73,6 +74,7 @@ enum my_keycodes {
 //              ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
 #define DEF_R_0  ENT_MED,      SPC_NAV
 //              ╰-------------┴-------------╯
+#define DEF_R_0_3          DEF_R_0,          KC_BSPC
 
 // SYMBOLS
 //              ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
@@ -84,6 +86,7 @@ enum my_keycodes {
 //              ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤
 #define SYM_L_0                                            _______,      _______
 //                                                        ╰-------------┴-------------╯
+#define SYM_L_0_3                            _______,                SYM_L_0
 
 //              ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
 #define SYM_R_3  KC_BSLS,      KC_QUOT,      KC_DQUO,      KC_GRV,       KC_AT
@@ -94,6 +97,7 @@ enum my_keycodes {
 //              ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
 #define SYM_R_0  KC_SPC,       KC_BSPC
 //              ╰-------------┴-------------╯
+#define SYM_R_0_3          SYM_R_0,          KC_BSPC
 
 // NAVIGATION
 //              ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
@@ -105,6 +109,7 @@ enum my_keycodes {
 //              ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤
 #define NAV_L_0                                            KC_ESC,       KC_DEL
 //                                                        ╰-------------┴-------------╯
+#define NAV_L_0_3                            _______,                NAV_L_0
 
 //              ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
 #define NAV_R_3  XXXXXXX,      KC_BTN1,      KC_BTN2,      KC_BTN3,      XXXXXXX
@@ -115,6 +120,7 @@ enum my_keycodes {
 //              ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
 #define NAV_R_0  _______,      _______
 //              ╰-------------┴-------------╯
+#define NAV_R_0_3          NAV_R_0,          _______
 
 // NUMBERS
 //              ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
@@ -126,6 +132,7 @@ enum my_keycodes {
 //              ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤
 #define NUM_L_0                                            _______,      _______
 //                                                        ╰-------------┴-------------╯
+#define NUM_L_0_3                            _______,                NUM_L_0
 
 //              ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
 #define NUM_R_3  XXXXXXX,      KC_7,         KC_8,         KC_9,         XXXXXXX
@@ -136,6 +143,7 @@ enum my_keycodes {
 //              ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
 #define NUM_R_0  KC_DOT,       KC_0
 //              ╰-------------┴-------------╯
+#define NUM_R_0_3          NUM_R_0,          _______
 
 // MEDIA
 //              ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
@@ -147,6 +155,7 @@ enum my_keycodes {
 //              ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤
 #define MED_L_0                                            _______,      _______
 //                                                        ╰-------------┴-------------╯
+#define MED_L_0_3                            _______,                MED_L_0
 
 //              ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
 #define MED_R_3  _______,      FINE_VD,      FINE_VU,      _______,      _______
@@ -157,34 +166,46 @@ enum my_keycodes {
 //              ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
 #define MED_R_0  _______,      _______
 //              ╰-------------┴-------------╯
+#define MED_R_0_3          MED_R_0,          _______
 
-#define DEF_3_KYRIA XX, DEF_L_3, DEF_R_3, XX
-#define DEF_2_KYRIA XX, DEF_L_2, DEF_R_2, XX
-#define DEF_1_KYRIA XX, DEF_L_1, XX, XX, XX, XX, DEF_R_1, XX
-#define DEF_0_KYRIA XX, ESC_CMD, DEF_L_0, XX, XX, DEF_R_0, KC_BSPC, XX
 
-#define SYM_3_KYRIA XX, SYM_L_3, SYM_R_3, XX
-#define SYM_2_KYRIA XX, SYM_L_2, SYM_R_2, XX
-#define SYM_1_KYRIA XX, SYM_L_1, XX, XX, XX, XX, SYM_R_1, XX
-#define SYM_0_KYRIA XX, OO, SYM_L_0, XX, XX, SYM_R_0, OO, XX
+#define DEF_3_6 XX, DEF_L_3, DEF_R_3, XX
+#define DEF_2_6 XX, DEF_L_2, DEF_R_2, XX
+#define DEF_1_6 XX, DEF_L_1, DEF_R_1, XX
+#define DEF_1_8 DEF_L_1, XX, XX, XX, XX, DEF_R_1
+#define DEF_0_5 XX, DEF_L_0_3, XX, XX, DEF_R_0_3, XX
+#define DEF_0_3 DEF_L_0_3, DEF_R_0_3
 
-#define NAV_3_KYRIA XX, NAV_L_3, NAV_R_3, XX
-#define NAV_2_KYRIA XX, NAV_L_2, NAV_R_2, XX
-#define NAV_1_KYRIA XX, NAV_L_1, XX, XX, XX, XX, NAV_R_1, XX
-#define NAV_0_KYRIA XX, OO, NAV_L_0, XX, XX, NAV_R_0, OO, XX
+#define SYM_3_6 XX, SYM_L_3, SYM_R_3, XX
+#define SYM_2_6 XX, SYM_L_2, SYM_R_2, XX
+#define SYM_1_6 XX, SYM_L_1, SYM_R_1, XX
+#define SYM_1_8 SYM_L_1, XX, XX, XX, XX, SYM_R_1
+#define SYM_0_5 XX, SYM_L_0_3, XX, XX, SYM_R_0_3, XX
+#define SYM_0_3 SYM_L_0_3, SYM_R_0_3
 
-#define NUM_3_KYRIA XX, NUM_L_3, NUM_R_3, XX
-#define NUM_2_KYRIA XX, NUM_L_2, NUM_R_2, XX
-#define NUM_1_KYRIA XX, NUM_L_1, XX, XX, XX, XX, NUM_R_1, XX
-#define NUM_0_KYRIA XX, OO, NUM_L_0, XX, XX, NUM_R_0, OO, XX
+#define NAV_3_6 XX, NAV_L_3, NAV_R_3, XX
+#define NAV_2_6 XX, NAV_L_2, NAV_R_2, XX
+#define NAV_1_6 XX, NAV_L_1, NAV_R_1, XX
+#define NAV_1_8 NAV_L_1, XX, XX, XX, XX, NAV_R_1
+#define NAV_0_5 XX, NAV_L_0_3, XX, XX, NAV_R_0_3, XX
+#define NAV_0_3 NAV_L_0_3, NAV_R_0_3
 
-#define MED_3_KYRIA XX, MED_L_3, MED_R_3, XX
-#define MED_2_KYRIA XX, MED_L_2, MED_R_2, XX
-#define MED_1_KYRIA XX, MED_L_1, XX, XX, XX, XX, MED_R_1, XX
-#define MED_0_KYRIA XX, OO, MED_L_0, XX, XX, MED_R_0, OO, XX
+#define NUM_3_6 XX, NUM_L_3, NUM_R_3, XX
+#define NUM_2_6 XX, NUM_L_2, NUM_R_2, XX
+#define NUM_1_6 XX, NUM_L_1, NUM_R_1, XX
+#define NUM_1_8 NUM_L_1, XX, XX, XX, XX, NUM_R_1
+#define NUM_0_5 XX, NUM_L_0_3, XX, XX, NUM_R_0_3, XX
+#define NUM_0_3 NUM_L_0_3, NUM_R_0_3
 
-#define DEF_KYRIA DEF_3_KYRIA, DEF_2_KYRIA, DEF_1_KYRIA, DEF_0_KYRIA
-#define SYM_KYRIA SYM_3_KYRIA, SYM_2_KYRIA, SYM_1_KYRIA, SYM_0_KYRIA
-#define NAV_KYRIA NAV_3_KYRIA, NAV_2_KYRIA, NAV_1_KYRIA, NAV_0_KYRIA
-#define NUM_KYRIA NUM_3_KYRIA, NUM_2_KYRIA, NUM_1_KYRIA, NUM_0_KYRIA
-#define MED_KYRIA MED_3_KYRIA, MED_2_KYRIA, MED_1_KYRIA, MED_0_KYRIA
+#define MED_3_6 XX, MED_L_3, MED_R_3, XX
+#define MED_2_6 XX, MED_L_2, MED_R_2, XX
+#define MED_1_6 XX, MED_L_1, MED_R_1, XX
+#define MED_1_8 MED_L_1, XX, XX, XX, XX, MED_R_1
+#define MED_0_5 XX, MED_L_0_3, XX, XX, MED_R_0_3, XX
+#define MED_0_3 MED_L_0_3, MED_R_0_3
+
+#define DEF_KYRIA DEF_3_6, DEF_2_6, DEF_1_8, DEF_0_5
+#define SYM_KYRIA SYM_3_6, SYM_2_6, SYM_1_8, SYM_0_5
+#define NAV_KYRIA NAV_3_6, NAV_2_6, NAV_1_8, NAV_0_5
+#define NUM_KYRIA NUM_3_6, NUM_2_6, NUM_1_8, NUM_0_5
+#define MED_KYRIA MED_3_6, MED_2_6, MED_1_8, MED_0_5
