@@ -1,8 +1,9 @@
 #pragma once
 
-#define JP_LIGHT_SIDE
+/* #define JP_LIGHT_SIDE */
 #define JP_MASTER
-#define CLEO
+/* #define CLEO */
+#define SATANIC
 
 #ifdef RGBLIGHT_ENABLE
 #  define RGBLIGHT_EFFECT_BREATHING
