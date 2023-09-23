@@ -209,3 +209,9 @@ enum my_keycodes {
 #define NAV_KYRIA NAV_3_6, NAV_2_6, NAV_1_8, NAV_0_5
 #define NUM_KYRIA NUM_3_6, NUM_2_6, NUM_1_8, NUM_0_5
 #define MED_KYRIA MED_3_6, MED_2_6, MED_1_8, MED_0_5
+
+#define DEF_CRKBD DEF_3_6, DEF_2_6, DEF_1_6, DEF_0_3
+#define SYM_CRKBD SYM_3_6, SYM_2_6, SYM_1_6, SYM_0_3
+#define NAV_CRKBD NAV_3_6, NAV_2_6, NAV_1_6, NAV_0_3
+#define NUM_CRKBD NUM_3_6, NUM_2_6, NUM_1_6, NUM_0_3
+#define MED_CRKBD MED_3_6, MED_2_6, MED_1_6, MED_0_3
