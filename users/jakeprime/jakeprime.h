@@ -172,35 +172,35 @@ enum my_keycodes {
 #define DEF_3_6 XX, DEF_L_3, DEF_R_3, XX
 #define DEF_2_6 XX, DEF_L_2, DEF_R_2, XX
 #define DEF_1_6 XX, DEF_L_1, DEF_R_1, XX
-#define DEF_1_8 DEF_L_1, XX, XX, XX, XX, DEF_R_1
+#define DEF_1_8 XX, DEF_L_1, XX, XX, XX, XX, DEF_R_1, XX
 #define DEF_0_5 XX, DEF_L_0_3, XX, XX, DEF_R_0_3, XX
 #define DEF_0_3 DEF_L_0_3, DEF_R_0_3
 
 #define SYM_3_6 XX, SYM_L_3, SYM_R_3, XX
 #define SYM_2_6 XX, SYM_L_2, SYM_R_2, XX
 #define SYM_1_6 XX, SYM_L_1, SYM_R_1, XX
-#define SYM_1_8 SYM_L_1, XX, XX, XX, XX, SYM_R_1
+#define SYM_1_8 XX, SYM_L_1, XX, XX, XX, XX, SYM_R_1, XX
 #define SYM_0_5 XX, SYM_L_0_3, XX, XX, SYM_R_0_3, XX
 #define SYM_0_3 SYM_L_0_3, SYM_R_0_3
 
 #define NAV_3_6 XX, NAV_L_3, NAV_R_3, XX
 #define NAV_2_6 XX, NAV_L_2, NAV_R_2, XX
 #define NAV_1_6 XX, NAV_L_1, NAV_R_1, XX
-#define NAV_1_8 NAV_L_1, XX, XX, XX, XX, NAV_R_1
+#define NAV_1_8 XX, NAV_L_1, XX, XX, XX, XX, NAV_R_1, XX
 #define NAV_0_5 XX, NAV_L_0_3, XX, XX, NAV_R_0_3, XX
 #define NAV_0_3 NAV_L_0_3, NAV_R_0_3
 
 #define NUM_3_6 XX, NUM_L_3, NUM_R_3, XX
 #define NUM_2_6 XX, NUM_L_2, NUM_R_2, XX
 #define NUM_1_6 XX, NUM_L_1, NUM_R_1, XX
-#define NUM_1_8 NUM_L_1, XX, XX, XX, XX, NUM_R_1
+#define NUM_1_8 XX, NUM_L_1, XX, XX, XX, XX, NUM_R_1, XX
 #define NUM_0_5 XX, NUM_L_0_3, XX, XX, NUM_R_0_3, XX
 #define NUM_0_3 NUM_L_0_3, NUM_R_0_3
 
 #define MED_3_6 XX, MED_L_3, MED_R_3, XX
 #define MED_2_6 XX, MED_L_2, MED_R_2, XX
 #define MED_1_6 XX, MED_L_1, MED_R_1, XX
-#define MED_1_8 MED_L_1, XX, XX, XX, XX, MED_R_1
+#define MED_1_8 XX, MED_L_1, XX, XX, XX, XX, MED_R_1, XX
 #define MED_0_5 XX, MED_L_0_3, XX, XX, MED_R_0_3, XX
 #define MED_0_3 MED_L_0_3, MED_R_0_3
 
