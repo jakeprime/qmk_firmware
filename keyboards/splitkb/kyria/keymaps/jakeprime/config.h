@@ -4,6 +4,7 @@
 #define JP_MASTER
 /* #define CLEO */
 #define SATANIC
+#define FULL_LIGHTS
 
 #ifdef RGBLIGHT_ENABLE
 #  define RGBLIGHT_EFFECT_BREATHING
@@ -19,23 +20,25 @@
 #  define RGBLIGHT_HUE_STEP 8
 #  define RGBLIGHT_SAT_STEP 8
 #  define RGBLIGHT_VAL_STEP 8
-#  ifdef RGBLIGHT_LIMIT_VAL
-#    undef RGBLIGHT_LIMIT_VAL
-#  endif
-#  ifdef JP_LIGHT_SIDE
-#    define RGBLIGHT_LIMIT_VAL 240
-#  else
-#    define RGBLIGHT_LIMIT_VAL 255
-#  endif
 #  ifdef RGBLED_NUM
 #    undef RGBLED_NUM
 #  endif
-#  define RGBLED_NUM 16
 #  ifdef RGBLED_SPLIT
 #    undef RGBLED_SPLIT
 #  endif
-#  define RGBLED_SPLIT { 8, 8 }
-#  define RGBLIGHT_LED_MAP { 7, 6, 5, 4, 3, 2, 1, 0, 8, 9, 10, 11, 12, 13, 14, 15 }
+#  ifdef FULL_LIGHTS
+#    define RGBLED_NUM 32
+#    define RGBLED_SPLIT { 16, 16 }
+#    define RGBLIGHT_LED_MAP { 7, 5, 3, 5, 3, 0, 0, 1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 10, 12, 15, 15, 14, 15, 14, 13, 12, 11, 10, 9, 8 }
+#    ifdef RGBLIGHT_LIMIT_VAL
+#      undef RGBLIGHT_LIMIT_VAL
+#    endif
+#    define RGBLIGHT_LIMIT_VAL 220
+#  else
+#    define RGBLED_NUM 16
+#    define RGBLED_SPLIT { 8, 8 }
+#    define RGBLIGHT_LED_MAP { 7, 5, 3, 5, 3, 0, 0, 1, 8, 10, 12, 10, 12, 15, 15 }
+#  endif
 #endif
 
 // https://docs.qmk.fm/#/tap_hold?id=permissive-hold
