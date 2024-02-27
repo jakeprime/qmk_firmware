@@ -11,7 +11,10 @@ enum layers {
     _SYMB,
     _NAV,
     _NUMS,
-    _MEDIA
+    _MEDIA,
+    _DO1,
+    _DO2,
+    _DO3
 };
 
 enum my_keycodes {
@@ -37,6 +40,8 @@ enum my_keycodes {
 
 #define ENT_MED LT(_MEDIA, KC_ENT)
 #define SPC_NAV LT(_NAV, KC_SPC)
+#define X_DO2 LT(_DO2, KC_X)
+#define SPC_DO3 LT(_DO3, KC_SPC)
 
 #define H_AMPR LCTL_T(KC_AMPR)
 #define H_PIPE LALT_T(KC_PIPE)
@@ -159,7 +164,7 @@ enum my_keycodes {
 #define MED_L_0_3                            _______,                MED_L_0
 
 //              ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-#define MED_R_3  _______,      FINE_VD,      FINE_VU,      _______,      _______
+#define MED_R_3  _______,      FINE_VD,      FINE_VU,      _______,      DF(_DO1)
 //              ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
 #define MED_R_2  KC_MPRV,      KC_VOLD,      KC_VOLU,      KC_MNXT,      RGB_TOG
 //              ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
@@ -168,6 +173,52 @@ enum my_keycodes {
 #define MED_R_0  _______,      _______
 //              ╰─────────────┴─────────────╯
 #define MED_R_0_3          MED_R_0,          _______
+
+// DIVNITY: ORIGINAL SIN
+//              ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+#define DO1_L_3  KC_Q,         KC_W,         KC_E,         KC_R,         KC_T
+//              ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+#define DO1_L_2  KC_LCTL,      KC_S,         KC_D,         KC_F,         KC_G
+//              ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+#define DO1_L_1  KC_Z,         KC_X,         KC_C,         KC_V,         KC_B
+//              ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤
+#define DO1_L_0                                            X_DO2,        SPC_DO3
+//                                                        ╰─────────────┴─────────────╯
+#define DO1_L_0_3                            KC_LALT,                DO1_L_0
+
+//              ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+#define DO1_R_3  _______,      _______,      _______,      _______,      DF(_QWERTY)
+//              ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+#define DO1_R_2  _______,      _______,      _______,      _______,      _______
+//              ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+#define DO1_R_1  _______,      _______,      _______,      _______,      _______
+//              ├─────────────┼─────────────┼────────────┴──────────────┴─────────────╯
+#define DO1_R_0  _______,      _______
+//              ╰─────────────┴─────────────╯
+#define DO1_R_0_3          _______,                DO1_R_0
+
+//              ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+#define DO2_L_3  KC_P,         KC_O,         KC_I,         KC_U,         KC_Y
+//              ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+#define DO2_L_2  KC_SCLN,      KC_L,         KC_K,         KC_J,         KC_H
+//              ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+#define DO2_L_1  KC_SLSH,      KC_DOT,       KC_COMM,      KC_M,         KC_N
+//              ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤
+#define DO2_L_0                                            MO(_DO2),     SPC_DO3
+//                                                        ╰─────────────┴─────────────╯
+#define DO2_L_0_3                            KC_LALT,                DO2_L_0
+
+
+//              ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+#define DO3_L_3  _______,      KC_7,         KC_8,         KC_9,         _______
+//              ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+#define DO3_L_2  KC_0,         KC_1,         KC_2,         KC_3,         _______
+//              ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+#define DO3_L_1  _______,      KC_4,         KC_5,         KC_6,         _______
+//              ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤
+#define DO3_L_0                                            MO(_DO2),      SPC_DO3
+//                                                        ╰─────────────┴─────────────╯
+#define DO3_L_0_3                            KC_LALT,                DO3_L_0
 
 
 #define DEF_3_6 XX, DEF_L_3, DEF_R_3, XX
@@ -205,11 +256,35 @@ enum my_keycodes {
 #define MED_0_5 XX, MED_L_0_3, XX, XX, MED_R_0_3, XX
 #define MED_0_3 MED_L_0_3, MED_R_0_3
 
+#define DO1_3_6 XX, DO1_L_3, DO1_R_3, XX
+#define DO1_2_6 XX, DO1_L_2, DO1_R_2, XX
+#define DO1_1_6 XX, DO1_L_1, DO1_R_1, XX
+#define DO1_1_8 XX, DO1_L_1, XX, XX, XX, XX, DO1_R_1, XX
+#define DO1_0_5 XX, DO1_L_0_3, XX, XX, DO1_R_0_3, XX
+#define DO1_0_3 DO1_L_0_3, DO1_R_0_3
+
+#define DO2_3_6 XX, DO2_L_3, DO1_R_3, XX
+#define DO2_2_6 XX, DO2_L_2, DO1_R_2, XX
+#define DO2_1_6 XX, DO2_L_1, DO1_R_1, XX
+#define DO2_1_8 XX, DO2_L_1, XX, XX, XX, XX, DO1_R_1, XX
+#define DO2_0_5 XX, DO2_L_0_3, XX, XX, DO1_R_0_3, XX
+#define DO2_0_3 DO2_L_0_3, DO1_R_0_3
+
+#define DO3_3_6 XX, DO3_L_3, DO1_R_3, XX
+#define DO3_2_6 XX, DO3_L_2, DO1_R_2, XX
+#define DO3_1_6 XX, DO3_L_1, DO1_R_1, XX
+#define DO3_1_8 XX, DO3_L_1, XX, XX, XX, XX, DO1_R_1, XX
+#define DO3_0_5 XX, DO3_L_0_3, XX, XX, DO1_R_0_3, XX
+#define DO3_0_3 DO3_L_0_3, DO1_R_0_3
+
 #define DEF_KYRIA DEF_3_6, DEF_2_6, DEF_1_8, DEF_0_5
 #define SYM_KYRIA SYM_3_6, SYM_2_6, SYM_1_8, SYM_0_5
 #define NAV_KYRIA NAV_3_6, NAV_2_6, NAV_1_8, NAV_0_5
 #define NUM_KYRIA NUM_3_6, NUM_2_6, NUM_1_8, NUM_0_5
 #define MED_KYRIA MED_3_6, MED_2_6, MED_1_8, MED_0_5
+#define DO1_KYRIA DO1_3_6, DO1_2_6, DO1_1_8, DO1_0_5
+#define DO2_KYRIA DO2_3_6, DO2_2_6, DO2_1_8, DO2_0_5
+#define DO3_KYRIA DO3_3_6, DO3_2_6, DO3_1_8, DO3_0_5
 
 #define DEF_CRKBD DEF_3_6, DEF_2_6, DEF_1_6, DEF_0_3
 #define SYM_CRKBD SYM_3_6, SYM_2_6, SYM_1_6, SYM_0_3
