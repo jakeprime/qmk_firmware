@@ -41,6 +41,33 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       show_rainbow_lights();
       return true;
 
+    case JP_HASH:
+      if (record->event.pressed) {
+        switch (detected_host_os()) {
+          case OS_LINUX:
+            SEND_STRING(SS_LCTL(SS_LSFT("u")) "23" SS_TAP(X_ENT));
+            return true;
+          case OS_MACOS:
+            SEND_STRING(SS_RALT("3"));
+            return true;
+          default:
+            return true;
+        }
+      }
+    case JP_POUND:
+      if (record->event.pressed) {
+        switch (detected_host_os()) {
+          case OS_LINUX:
+            SEND_STRING(SS_LCTL(SS_LSFT("u")) "a3" SS_TAP(X_ENT));
+            return true;
+          case OS_MACOS:
+            SEND_STRING(SS_LSFT("3"));
+            return true;
+          default:
+            return true;
+        }
+      }
+
     default:
       return true;
   }
