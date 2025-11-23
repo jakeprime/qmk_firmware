@@ -118,11 +118,11 @@ enum my_keycodes {
 #define NAV_L_0_3                            _______,                NAV_L_0
 
 //              ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-#define NAV_R_3  XXXXXXX,      KC_BTN1,      KC_BTN2,      KC_BTN3,      XXXXXXX
+#define NAV_R_3  XXXXXXX,      MS_BTN1,      MS_BTN2,      MS_BTN3,      XXXXXXX
 //              ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
 #define NAV_R_2  KC_LEFT,      KC_DOWN,      KC_UP,        KC_RGHT,      XXXXXXX
 //              ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-#define NAV_R_1  KC_MS_L,      KC_MS_D,      KC_MS_U,      KC_MS_R,      XXXXXXX
+#define NAV_R_1  MS_LEFT,      MS_DOWN,      MS_UP,        MS_RGHT,      XXXXXXX
 //              ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
 #define NAV_R_0  _______,      _______
 //              ╰─────────────┴─────────────╯
@@ -155,9 +155,9 @@ enum my_keycodes {
 //              ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
 #define MED_L_3  _______,      JP_BLUE,      JP_RNBW,      JP_RED,       _______
 //              ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-#define MED_L_2  RGB_TOG,      RGB_SAI,      RGB_HUI,      RGB_VAI,      RGB_MOD
+#define MED_L_2  UG_TOGG,      UG_SATU,      UG_HUEU,      UG_VALU,      UG_NEXT
 //              ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-#define MED_L_1  KC_SLEP,      RGB_SAD,      RGB_HUD,      RGB_VAD,      RGB_RMOD
+#define MED_L_1  KC_SLEP,      UG_SATD,      UG_HUED,      UG_VALD,      UG_PREV
 //              ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤
 #define MED_L_0                                            _______,      _______
 //                                                        ╰─────────────┴─────────────╯
@@ -166,7 +166,7 @@ enum my_keycodes {
 //              ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
 #define MED_R_3  _______,      FINE_VD,      FINE_VU,      _______,      DF(_DO1)
 //              ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-#define MED_R_2  KC_MPRV,      KC_VOLD,      KC_VOLU,      KC_MNXT,      RGB_TOG
+#define MED_R_2  KC_MPRV,      KC_VOLD,      KC_VOLU,      KC_MNXT,      UG_TOGG
 //              ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
 #define MED_R_1  SCR_CPY,      KC_MPLY,      KC_MUTE,      _______,      KC_SLEP
 //              ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯

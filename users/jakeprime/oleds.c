@@ -32,8 +32,9 @@ static void render_status(void) {
   oled_set_cursor(17, 7);
 
   // Host Keyboard LED Status
-  uint8_t led_usb_state = host_keyboard_leds();
-  oled_write_P(IS_LED_ON(led_usb_state, USB_LED_CAPS_LOCK) ? PSTR("Caps") : PSTR("    "), false);
+  // IS_LED_ON has been deprecated
+  // uint8_t led_usb_state = host_keyboard_leds();
+  // oled_write_P(IS_LED_ON(led_usb_state, USB_LED_CAPS_LOCK) ? PSTR("Caps") : PSTR("    "), false);
 }
 
 bool oled_task_user(void) {

@@ -69,9 +69,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // https://docs.qmk.fm/#/tap_hold?id=permissive-hold
 #define PERMISSIVE_HOLD
 
-// https://docs.qmk.fm/#/tap_hold?id=ignore-mod-tap-interrupt
-#define IGNORE_MOD_TAP_INTERRUPT
-
 #define TAPPING_FORCE_HOLD
 
 #define TAPPING_TERM 175
