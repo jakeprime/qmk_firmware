@@ -18,7 +18,9 @@ enum my_keycodes {
   JP_COLN = SAFE_RANGE,
   JP_BLUE,
   JP_RED,
-  JP_RNBW
+  JP_RNBW,
+  JP_POUND,
+  JP_HASH
 };
 
 #define QWRT_A LCTL_T(KC_A)
@@ -106,7 +108,7 @@ enum my_keycodes {
 //              ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
 #define NAV_L_2  H_AMPR,       H_PIPE,       H_LPRN,       H_RPRN,       KC_DLR
 //              ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-#define NAV_L_1  KC_PERC,      KC_ASTR,      KC_LBRC,      KC_RBRC,      S(KC_3)
+#define NAV_L_1  KC_PERC,      KC_ASTR,      KC_LBRC,      KC_RBRC,      JP_POUND
 //              ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤
 #define NAV_L_0                                            KC_ESC,       KC_DEL
 //                                                        ╰─────────────┴─────────────╯
