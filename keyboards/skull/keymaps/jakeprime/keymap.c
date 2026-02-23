@@ -1,59 +1,15 @@
-#include "quantum.h"
+#include QMK_KEYBOARD_H
+#include "jakeprime.h"
 
-// #ifndef USERSPACE
-// #define USERSPACE
+/* enum keymap_keycodes { */
+/*     EY_TOGG = QK_USER_0, */
+/*     EY_HUE, */
+/*     EY_SAT, */
+/*     EY_VAL, */
+/* }; */
 
-#define XX KC_NO
-#define OO _______
-
-enum layers {
-    _QWERTY = 0,
-    _SYMB,
-    _NAV,
-    _NUMS,
-    _MEDIA
-};
-
-enum my_keycodes {
-  JP_COLN = SAFE_RANGE,
-  JP_BLUE,
-  JP_RED,
-  JP_RNBW,
-  JP_POUND,
-  JP_HASH
-};
-
-#define QWRT_A LCTL_T(KC_A)
-#define QWRT_S LALT_T(KC_S)
-#define QWRT_D LGUI_T(KC_D)
-#define QWRT_F LSFT_T(KC_F)
-
-#define QWRT_J RSFT_T(KC_J)
-#define QWRT_K RGUI_T(KC_K)
-#define QWRT_L LALT_T(KC_L)
-#define QWRT_SC RCTL_T(KC_SCLN)
-
-#define TAB_SYM LT(_SYMB, KC_TAB)
-#define CAP_NUM LT(_NUMS, KC_CAPS)
-#define ESC_CMD LGUI_T(KC_ESC)
-
-#define ENT_MED LT(_MEDIA, KC_ENT)
-#define SPC_NAV LT(_NAV, KC_SPC)
-
-#define H_AMPR LCTL_T(KC_AMPR)
-#define H_PIPE LALT_T(KC_PIPE)
-#define H_LPRN LGUI_T(KC_LPRN)
-#define H_RPRN LSFT_T(KC_RPRN)
-
-#define H_UNDS RSFT_T(KC_UNDS)
-#define H_MINS RGUI_T(KC_MINS)
-#define H_PLUS LALT_T(KC_PLUS)
-#define H_COLN RCTL_T(JP_COLN)
-#define JP_HASH RALT(KC_3)
-
-#define FINE_VU LSA(KC_KB_VOLUME_UP)
-#define FINE_VD LSA(KC_KB_VOLUME_DOWN)
-#define SCR_CPY S(C(G(KC_4)))
+#include "transactions.h"
+#include "color.h"
 
 // DEFAULT
 //              ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
@@ -244,3 +200,161 @@ enum my_keycodes {
 #define NAV_SKULL NAV_3_5, NAV_2_5, NAV_1_5, NAV_0_3
 #define NUM_SKULL NUM_3_5, NUM_2_5, NUM_1_5, NUM_0_3
 #define MED_SKULL MED_3_5, MED_2_5, MED_1_5, MED_0_3
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+[_QWERTY]=LAYOUT_split_3x5_2(
+KC_Q,KC_W,KC_E,KC_R,KC_T,KC_Y,KC_U,KC_I,KC_O,KC_P,QWRT_A,QWRT_S,QWRT_D,QWRT_F,KC_G,KC_H,QWRT_J,QWRT_K,QWRT_L,QWRT_SC,KC_Z,KC_X,KC_C,KC_V,KC_B,KC_N,KC_M,KC_COMM,KC_DOT,KC_SLSH,TAB_SYM,CAP_NUM,ENT_MED,SPC_NAV
+                             ),
+[_SYMB]=LAYOUT_split_3x5_2(
+                           KC_PLUS,S(KC_6),KC_LCBR,KC_RCBR,JP_HASH,KC_BSLS,KC_QUOT,KC_DQUO,KC_GRV,KC_AT,H_AMPR,H_PIPE,H_LPRN,H_RPRN,KC_DLR,KC_TILD,H_UNDS,H_MINS,H_PLUS,H_COLN,KC_PERC,KC_ASTR,KC_LBRC,KC_RBRC,S(KC_3),KC_EXLM,KC_EQL,KC_LT,KC_GT,KC_QUES,_______,_______,KC_SPC,KC_BSPC
+                           ),
+
+[_NAV] = LAYOUT_split_3x5_2(
+                            KC_PLUS,      S(KC_6),      KC_LCBR,      KC_RCBR,      JP_HASH,
+                            XXXXXXX,      MS_BTN1,      MS_BTN2,      MS_BTN3,      XXXXXXX,
+                            H_AMPR,       H_PIPE,       H_LPRN,       H_RPRN,       KC_DLR,
+                            KC_LEFT,      KC_DOWN,      KC_UP,        KC_RGHT,      XXXXXXX,
+                            KC_PERC,      KC_ASTR,      KC_LBRC,      KC_RBRC,      JP_POUND,
+                            MS_LEFT,      MS_DOWN,      MS_UP,        MS_RGHT,      XXXXXXX,
+                            KC_ESC,       KC_DEL,
+                            _______,      _______
+                            ),
+
+[_NUMS] = LAYOUT_split_3x5_2(
+_______,      KC_7,         KC_8,         KC_9,         _______,
+XXXXXXX,      KC_7,         KC_8,         KC_9,         XXXXXXX,
+_______,      KC_4,         KC_5,         KC_6,         _______,
+KC_PLUS,      KC_4,         KC_5,         KC_6,         KC_ASTR,
+KC_0,         KC_1,         KC_2,         KC_3,         _______,
+KC_MINS,      KC_1,         KC_2,         KC_3,         KC_SLSH,
+_______,      _______,
+KC_DOT,       KC_0
+                             ),
+
+[_MEDIA] = LAYOUT_split_3x5_2(
+_______,      JP_BLUE,      JP_RNBW,      JP_RED,       _______,
+_______,      FINE_VD,      FINE_VU,      _______,      _______,
+UG_TOGG,      UG_SATU,      UG_HUEU,      UG_VALU,      UG_NEXT,
+KC_MPRV,      KC_VOLD,      KC_VOLU,      KC_MNXT,      UG_TOGG,
+KC_SLEP,      UG_SATD,      UG_HUED,      UG_VALD,      UG_PREV,
+SCR_CPY,      KC_MPLY,      KC_MUTE,      _______,      KC_SLEP,
+                                          _______,      _______,
+_______,      _______
+                              )
+};
+
+/* typedef union eyergb_config_t { */
+/*     uint32_t raw; */
+/*     struct { */
+/*         bool    enable : 1; */
+/*         uint8_t hue : 8; */
+/*         uint8_t sat : 8; */
+/*         uint8_t val : 8; */
+/*     }; */
+/* } eyergb_config_t; */
+
+/* eyergb_config_t user_eyeconfig = { */
+/*     .enable = true, */
+/*     .hue = 8, */
+/*     .sat = 255, */
+/*     .val = 255 */
+/* }; */
+
+/* void set_eyehsv(bool enable, uint8_t hue, uint8_t sat, uint8_t val){ */
+
+/*     if (user_eyeconfig.enable){ */
+/*         hsv_t hsv = {hue,sat,val}; */
+/*         rgb_t colour = hsv_to_rgb(hsv); */
+/*         for (uint8_t i = 10; i < 13; i++) { */
+/*             rgblight_driver.set_color(i, colour.r, colour.g, colour.b); */
+/*         } */
+/*     } else { */
+/*         for (uint8_t i = 10; i < 13; i++) { */
+/*             rgblight_driver.set_color(i, 0, 0, 0); */
+/*         } */
+/*     } */
+
+/*     rgblight_driver.flush(); */
+/* } */
+
+/* bool process_record_user(uint16_t keycode, keyrecord_t *record) { */
+/*     switch (keycode) { */
+/*     case EY_TOGG: */
+/*         if (record->event.pressed) { */
+/*             user_eyeconfig.enable = !user_eyeconfig.enable; */
+/*             set_eyehsv(user_eyeconfig.enable,user_eyeconfig.hue,user_eyeconfig.sat,user_eyeconfig.val); */
+/*         } */
+/*         break; */
+/*     case EY_HUE: */
+/*         if (record->event.pressed) { */
+/*             user_eyeconfig.hue = user_eyeconfig.hue + RGBLIGHT_HUE_STEP; */
+/*             set_eyehsv(user_eyeconfig.enable,user_eyeconfig.hue,user_eyeconfig.sat,user_eyeconfig.val); */
+/*         } */
+/*         break; */
+/*     case EY_SAT: */
+/*         if (record->event.pressed) { */
+/*             user_eyeconfig.sat = user_eyeconfig.sat + RGBLIGHT_SAT_STEP; */
+/*             set_eyehsv(user_eyeconfig.enable,user_eyeconfig.hue,user_eyeconfig.sat,user_eyeconfig.val); */
+/*         } */
+/*         break; */
+/*     case EY_VAL: */
+/*         if (record->event.pressed) { */
+/*             user_eyeconfig.val = user_eyeconfig.val + RGBLIGHT_VAL_STEP; */
+/*             set_eyehsv(user_eyeconfig.enable,user_eyeconfig.hue,user_eyeconfig.sat,user_eyeconfig.val); */
+/*         } */
+/*         break; */
+/*     } */
+/*     return true; */
+/* }; */
+
+/* void user_sync_eyehsv_handler(uint8_t in_buflen, const void* in_data, uint8_t out_buflen, void* out_data) { */
+/*     const eyergb_config_t *m2s = (const eyergb_config_t*)in_data; */
+
+/*     if (user_eyeconfig.raw != m2s->raw){ */
+/*         user_eyeconfig.raw = m2s->raw; */
+/*         set_eyehsv(user_eyeconfig.enable,user_eyeconfig.hue,user_eyeconfig.sat,user_eyeconfig.val); */
+/*     } */
+/* } */
+
+/* void eeconfig_init_user(void) { */
+/*   user_eyeconfig.raw = 0; */
+/*   user_eyeconfig.enable = 1; */
+/*   user_eyeconfig.hue = 0; */
+/*   user_eyeconfig.sat = 255; */
+/*   user_eyeconfig.val = 255; */
+
+/*   eeconfig_update_user(user_eyeconfig.raw); */
+
+/*   set_eyehsv(user_eyeconfig.enable,user_eyeconfig.hue,user_eyeconfig.sat,user_eyeconfig.val); */
+/* } */
+
+/* void keyboard_post_init_user(void){ */
+/*     user_eyeconfig.raw = eeconfig_read_user(); */
+/*     if (is_keyboard_left()){ */
+/*         rgblight_set_effect_range(0, 10); */
+/*     } else { */
+/*         rgblight_set_effect_range(13, 10); */
+/*     } */
+/*     transaction_register_rpc(USER_SYNC_A, user_sync_eyehsv_handler); */
+/*     set_eyehsv(user_eyeconfig.enable,user_eyeconfig.hue,user_eyeconfig.sat,user_eyeconfig.val); */
+/* } */
+
+/* void housekeeping_task_user(void) { */
+/*     if (is_keyboard_master()) { */
+/*         static uint32_t last_sync = 0; */
+/*         if (timer_elapsed32(last_sync) > 100) { */
+/*             if(transaction_rpc_send(USER_SYNC_A, sizeof(user_eyeconfig), &user_eyeconfig)) { */
+/*                 last_sync = timer_read32(); */
+/*             } */
+/*         } */
+/*     } */
+
+/*     static uint32_t eeprom_sync = 0; */
+/*     if (timer_elapsed32(eeprom_sync) > 10000) { // check user eeprom every 10 seconds */
+/*         uint32_t raw = eeconfig_read_user(); */
+/*         if(raw != user_eyeconfig.raw) { */
+/*                 raw = user_eyeconfig.raw; */
+/*                 eeconfig_update_user(raw); */
+/*         } */
+/*     } */
+/* } */
