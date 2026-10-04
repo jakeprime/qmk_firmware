@@ -1,0 +1,12 @@
+#include QMK_KEYBOARD_H
+#include "jakeprime.h"
+
+#define LAYOUT_WRAPPER(...) LAYOUT_split_3x5_2(__VA_ARGS__)
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+    [_QWERTY] = LAYOUT_WRAPPER(DEF_SKULL),
+    [_SYMB] = LAYOUT_WRAPPER(SYM_SKULL),
+    [_NAV] = LAYOUT_WRAPPER(NAV_SKULL),
+    [_NUMS] = LAYOUT_WRAPPER(NUM_SKULL),
+    [_MEDIA] = LAYOUT_WRAPPER(MED_SKULL)
+};
