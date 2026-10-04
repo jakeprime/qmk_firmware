@@ -49,7 +49,6 @@ enum my_keycodes {
 #define H_MINS RGUI_T(KC_MINS)
 #define H_PLUS LALT_T(KC_PLUS)
 #define H_COLN RCTL_T(JP_COLN)
-#define JP_HASH RALT(KC_3)
 
 #define FINE_VU LSA(KC_KB_VOLUME_UP)
 #define FINE_VD LSA(KC_KB_VOLUME_DOWN)
