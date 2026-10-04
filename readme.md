@@ -1,5 +1,25 @@
 # Quantum Mechanical Keyboard Firmware
 
+## jakeprime
+
+Build using the docker images:
+
+```sh
+util/docker_build.sh skull:jakeprime
+```
+
+Flash with `dfu-util`:
+
+```sh
+# make sure that it's in dfu mode and visible
+dfu-util --list
+
+# flash
+dfu-util -a 0 --dfuse-address 0x08000000 -D skull_jakeprime.bin
+```
+
+The `0x08...` address will be in the result of the list command, make sure it's the same value.
+
 [![Current Version](https://img.shields.io/github/tag/qmk/qmk_firmware.svg)](https://github.com/qmk/qmk_firmware/tags)
 [![Discord](https://img.shields.io/discord/440868230475677696.svg)](https://discord.gg/qmk)
 [![Docs Status](https://img.shields.io/badge/docs-ready-orange.svg)](https://docs.qmk.fm)
