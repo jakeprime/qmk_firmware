@@ -2,6 +2,8 @@
 
 #define SPLIT_TRANSACTION_IDS_USER USER_SYNC_A
 
+#define RGBLIGHT_LAYERS
+#define RGBLIGHT_LAYER_BLINK
 
 // https://docs.qmk.fm/#/tap_hold?id=permissive-hold
 #define PERMISSIVE_HOLD

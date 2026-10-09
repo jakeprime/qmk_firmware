@@ -88,13 +88,57 @@ void eeconfig_init_user(void) {
   set_eyehsv(user_eyeconfig.enable,user_eyeconfig.hue,user_eyeconfig.sat,user_eyeconfig.val);
 }
 
-void keyboard_post_init_user(void){
-    user_eyeconfig.raw = eeconfig_read_user();
-    if (is_keyboard_left()){
-        rgblight_set_effect_range(0, 10);
-    } else {
-        rgblight_set_effect_range(13, 10);
+const rgblight_segment_t PROGMEM caps_lock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+                                                                             {10, 3, HSV_RED}
+                                                                            );
+
+const rgblight_segment_t* const PROGMEM rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+                                                                            caps_lock_layer
+                                                                           );
+
+#define CAPS_LAYER_INDEX 0
+#define BLINK_DURATION 100  // Time in milliseconds for each flash state (On/Off)
+
+static bool caps_lock_active = false;
+
+// 1. Detect when Caps Lock changes state
+bool led_update_user(led_t led_state) {
+    caps_lock_active = led_state.caps_lock;
+
+    // If turned off, make sure we clean up the layer immediately
+    /* if (!caps_lock_active) { */
+    /*     rgblight_set_layer_state(CAPS_LAYER_INDEX, false); */
+    /* } */
+    return true;
+}
+
+// 2. Loop the blink effect while Caps Lock is active
+void matrix_scan_user(void) {
+    if (caps_lock_active) {
+        // Adjust the divisor (4) to change speed. Higher = slower, lower = faster.
+        uint32_t time = timer_read() / 4;
+
+        // Create a repeating loop from 0 to 511
+        uint16_t cycle = time % 512;
+
+        // Convert the loop into a ramping triangle wave up and down (0 to 255)
+        uint8_t brightness = (cycle < 256) ? cycle : (511 - cycle);
+
+        // Targets: LED index 2, span of 2 LEDs (Index 2 and 3)
+        // 0 = Red Hue, 255 = Max Saturation
+        rgblight_sethsv_range(0, 255, brightness, 2, 2);
     }
+}
+
+void keyboard_post_init_user(void){
+    rgblight_layers = rgb_layers;
+
+    user_eyeconfig.raw = eeconfig_read_user();
+    /* if (is_keyboard_left()){ */
+    /*     rgblight_set_effect_range(0, 10); */
+    /* } else { */
+    /*     rgblight_set_effect_range(13, 10); */
+    /* } */
     transaction_register_rpc(USER_SYNC_A, user_sync_eyehsv_handler);
     set_eyehsv(user_eyeconfig.enable,user_eyeconfig.hue,user_eyeconfig.sat,user_eyeconfig.val);
 }
