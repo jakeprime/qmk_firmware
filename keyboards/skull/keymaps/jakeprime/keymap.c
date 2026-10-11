@@ -21,12 +21,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 typedef union eye_config_t {
     uint32_t raw;
     struct {
-        bool enable: 1;
+        bool eyes_on: 1;
+        bool caps_lock: 1;
     };
 } eye_config_t;
 
 eye_config_t user_eyeconfig = {
-    .enable = true
+    .eyes_on = false,
+    .caps_lock = false
 };
 
 const rgblight_segment_t PROGMEM my_eyes_layer[] = RGBLIGHT_LAYER_SEGMENTS(
@@ -36,30 +38,50 @@ const rgblight_segment_t PROGMEM my_eyes_layer[] = RGBLIGHT_LAYER_SEGMENTS(
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
                                                                                my_eyes_layer
                                                                               );
+
+uint8_t breathe_val(void) {
+    uint8_t min_breathe_val = 128;
+    uint8_t max_breathe_val = 255;
+    uint16_t period = 1000; // ms
+    uint16_t total_steps = (max_breathe_val - min_breathe_val) * 2;
+    uint16_t temp_val = ((timer_read32() * total_steps) / period) % total_steps;
+    if (temp_val > (max_breathe_val - min_breathe_val)) {
+        return(max_breathe_val - (temp_val - (max_breathe_val - min_breathe_val)));
+    } else {
+        return(min_breathe_val + temp_val);
+    }
+}
+
 void update_lights(void) {
-    /* if (user_eyeconfig.enable) { */
-    /*     rgblight_set_clipping_range(10, 3); */
-    /*     rgblight_set_effect_range(0, 26); */
-    /*     /\*     rgblight_set_effect_range(6, 20); *\/ */
-    /*     /\*     // Actual per-half LED index, not mapping dependent *\/ */
-    /*     /\*     for (uint8_t i = 10; i < 13; i++) { *\/ */
-    /*     /\*         rgblight_driver.set_color(i, 255, 0, 0); *\/ */
-    /*     /\*         rgblight_driver.flush(); *\/ */
-    /*     /\*     } *\/ */
-    /*     /\* } else { *\/ */
-    /*     /\*     rgblight_set_effect_range(0, 26); *\/ */
-    /* } else { */
-    /*     rgblight_set_clipping_range(0, 26); */
-    /*     rgblight_set_effect_range(0, 26); */
-    /* } */
+    if (user_eyeconfig.caps_lock) {
+        rgblight_disable();
+        rgblight_set_layer_state(0, false);
+        rgblight_set_effect_range(0, 0);
+        hsv_t hsv = {0, 255, breathe_val()};
+        rgb_t colour = hsv_to_rgb(hsv);
+        for (uint8_t i = 10; i < 13; i++) {
+            rgblight_driver.set_color(i, colour.r, colour.g, colour.b);
+        }
+    } else {
+        rgblight_set_effect_range(0, 26);
+        rgblight_set_layer_state(0, user_eyeconfig.eyes_on);
+        rgblight_enable();
+    }
+
+    rgblight_driver.flush();
+}
+
+void dispatch_rpc(void) {
+    transaction_rpc_send(USER_SYNC_A, sizeof(user_eyeconfig), &user_eyeconfig);
+    update_lights();
 }
 
 bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
     case EY_TOGG:
         if (record->event.pressed) {
-            user_eyeconfig.enable = !user_eyeconfig.enable;
-            update_lights();
+            user_eyeconfig.eyes_on = !user_eyeconfig.eyes_on;
+            dispatch_rpc();
         }
         break;
     }
@@ -78,37 +100,21 @@ void user_sync_eyes_handler(uint8_t in_buflen, const void* in_data, uint8_t out_
 void keyboard_post_init_user(void) {
     rgblight_layers = my_rgb_layers;
     transaction_register_rpc(USER_SYNC_A, user_sync_eyes_handler);
+    update_lights();
 }
 
 void housekeeping_task_user(void) {
-    if (is_keyboard_master()) {
-        static uint32_t last_sync = 0;
-        if (timer_elapsed32(last_sync) > 100) {
-            if (transaction_rpc_send(USER_SYNC_A, sizeof(user_eyeconfig), &user_eyeconfig)) {
-                last_sync = timer_read32();
-            }
-        }
+    static uint32_t last_breathe_sync = 0;
+    if (user_eyeconfig.caps_lock && timer_elapsed32(last_breathe_sync) > 20) {
+        update_lights();
     }
 }
 
-static bool last_caps_lock = false;
-static bool last_rgb_enabled = true;
 bool led_update_user(led_t led_state) {
-    if (led_state.caps_lock != last_caps_lock) {
-        last_caps_lock = led_state.caps_lock;
-        if (led_state.caps_lock) {
-            last_rgb_enabled = rgblight_is_enabled();
-            rgblight_disable();
-            rgblight_set_layer_state(0, led_state.caps_lock);
-            /* rgblight_mode(RGBLIGHT_MODE_BREATHING); */
-            // blink is only working on the left split
-            rgblight_blink_layer_repeat(0, 400, 100);
-       } else {
-            rgblight_unblink_layer(0);
-            rgblight_set_layer_state(0, led_state.caps_lock);
-            if (last_rgb_enabled) {
-                rgblight_enable();
-            }
+    if (is_keyboard_master()) {
+        if (led_state.caps_lock != user_eyeconfig.caps_lock) {
+            user_eyeconfig.caps_lock = led_state.caps_lock;
+            dispatch_rpc();
         }
     }
 
