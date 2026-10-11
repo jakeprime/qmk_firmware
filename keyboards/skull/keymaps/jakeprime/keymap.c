@@ -100,10 +100,11 @@ bool led_update_user(led_t led_state) {
             last_rgb_enabled = rgblight_is_enabled();
             rgblight_disable();
             rgblight_set_layer_state(0, led_state.caps_lock);
+            /* rgblight_mode(RGBLIGHT_MODE_BREATHING); */
             // blink is only working on the left split
-            /* rgblight_blink_layer_repeat(0, 400, 100); */
-        } else {
-            /* rgblight_unblink_layer(0); */
+            rgblight_blink_layer_repeat(0, 400, 100);
+       } else {
+            rgblight_unblink_layer(0);
             rgblight_set_layer_state(0, led_state.caps_lock);
             if (last_rgb_enabled) {
                 rgblight_enable();
