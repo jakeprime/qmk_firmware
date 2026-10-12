@@ -71,8 +71,9 @@ void update_lights(void) {
     rgblight_driver.flush();
 }
 
+bool should_dispatch = false;
 void dispatch_rpc(void) {
-    transaction_rpc_send(USER_SYNC_A, sizeof(user_eyeconfig), &user_eyeconfig);
+    should_dispatch = true;
     update_lights();
 }
 
@@ -105,8 +106,13 @@ void keyboard_post_init_user(void) {
 
 void housekeeping_task_user(void) {
     static uint32_t last_breathe_sync = 0;
-    if (user_eyeconfig.caps_lock && timer_elapsed32(last_breathe_sync) > 20) {
+    if (user_eyeconfig.caps_lock && timer_elapsed32(last_breathe_sync) > 100) {
         update_lights();
+        last_breathe_sync = timer_read32();
+    }
+
+    if (is_keyboard_master() && should_dispatch) {
+        should_dispatch = !transaction_rpc_send(USER_SYNC_A, sizeof(user_eyeconfig), &user_eyeconfig);
     }
 }
 
